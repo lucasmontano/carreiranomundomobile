@@ -11,8 +11,10 @@ object DummyWeatherForecast {
 
   private val cacheCityForecastMap = mutableMapOf<String, Forecast>()
 
+  var currentCity: String? = null
+
   /**
-   * Return random forecast for [city] or [city] cached forecast.
+   * Return random forecast for [currentCity] or [currentCity] cached forecast.
    */
-  fun forecast(city: String) = cacheCityForecastMap[city] ?: dummyForecastSet.random()
+  fun forecast() = cacheCityForecastMap[currentCity] ?: dummyForecastSet.random()
 }

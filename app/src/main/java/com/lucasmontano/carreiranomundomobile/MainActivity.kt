@@ -1,13 +1,14 @@
 package com.lucasmontano.carreiranomundomobile
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.material.snackbar.Snackbar
 import com.lucasmontano.carreiranomundomobile.databinding.ActivityMainBinding
+import com.lucasmontano.openweather.DummyWeatherForecast
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,8 +28,14 @@ class MainActivity : AppCompatActivity() {
     setupActionBarWithNavController(navController, appBarConfiguration)
 
     binding.fab.setOnClickListener { view ->
-      Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        .setAction("Action", null).show()
+      val currentCity = DummyWeatherForecast.currentCity
+      val forecast = DummyWeatherForecast.forecast()
+      val message = when {
+        forecast.isRaining -> getString(R.string.is_raining_message, currentCity)
+        !forecast.isRaining -> getString(R.string.is_not_raining_message, currentCity)
+        else -> getString(R.string.forecast_not_available_message, currentCity)
+      }
+      Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
     }
   }
 
