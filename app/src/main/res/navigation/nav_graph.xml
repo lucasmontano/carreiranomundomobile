@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.lucasmontano.carreiranomundomobile.HabitListFragment"
+        android:name="com.lucasmontano.carreiranomundomobile.collections.HabitListFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_habit_list" />
 </navigation>
