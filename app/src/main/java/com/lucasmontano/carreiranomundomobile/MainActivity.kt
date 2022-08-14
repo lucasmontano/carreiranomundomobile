@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.google.android.material.snackbar.Snackbar
+import com.lucasmontano.carreiranomundomobile.dummy.MockHabits
 import com.lucasmontano.carreiranomundomobile.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,11 +22,8 @@ class MainActivity : AppCompatActivity() {
     setSupportActionBar(binding.toolbar)
     setupNavigation()
 
-    binding.fab.setOnClickListener { view ->
-      Snackbar
-        .make(view, "Add new Habit", Snackbar.LENGTH_LONG)
-        .setAction("Add", null)
-        .show()
+    binding.fab.setOnClickListener {
+      MockHabits.addRandomHabit()
     }
   }
 

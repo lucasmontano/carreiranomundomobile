@@ -1,5 +1,6 @@
-package com.lucasmontano.carreiranomundomobile.collections
+package com.lucasmontano.carreiranomundomobile.dummy
 
+import com.lucasmontano.carreiranomundomobile.collections.HabitItem
 import java.util.*
 
 /**
@@ -43,5 +44,30 @@ object MockHabits {
       title = "Make a cup of coffee",
       isCompleted = false
     )
+  )
+
+  fun addRandomHabit() {
+    val habitItem = HabitItem(
+      id = UUID.randomUUID().toString(),
+      title = habitsTitle[Random().nextInt(habitsTitle.size)],
+      isCompleted = false
+    )
+    habitItemList.add(habitItem)
+  }
+
+  private val habitsTitle = listOf(
+    "Read the book",
+    "Walk the dog",
+    "Do the dishes",
+    "Go to the gym",
+    "Code every day",
+    "Make a cup of tea",
+    "Make a cup of coffee",
+    "Make the bed",
+    "Have a nice day",
+    "Eat some food",
+    "Drink some water",
+    "Relax",
+    "Meditate",
   )
 }
