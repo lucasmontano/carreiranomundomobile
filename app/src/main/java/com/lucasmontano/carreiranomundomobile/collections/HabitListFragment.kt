@@ -34,8 +34,12 @@ class HabitListFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    // Set the adapter
     binding.habitRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     binding.habitRecyclerView.adapter = adapter
+    // Adding Space between items with ItemDecoration
+    binding.habitRecyclerView.addItemDecoration(HabitListItemDecoration(requireContext()))
+    // Updating the list of habits
     adapter.updateHabits(MockHabits.habitItemList)
   }
 
