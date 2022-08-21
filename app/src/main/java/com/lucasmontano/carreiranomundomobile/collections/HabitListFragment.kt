@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.lucasmontano.carreiranomundomobile.R
 import com.lucasmontano.carreiranomundomobile.databinding.FragmentHabitListBinding
 import com.lucasmontano.carreiranomundomobile.dummy.MockHabits
 
@@ -38,10 +40,34 @@ class HabitListFragment : Fragment() {
     // Set the adapter
     binding.habitRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     binding.habitRecyclerView.adapter = adapter
-    // Adding Space between items with ItemDecoration
-    binding.habitRecyclerView.addItemDecoration(HabitListItemDecoration(requireContext()))
+
+    // Adding decorations to our recycler view
+    addingDividerDecoration()
+
     // Updating the list of habits
     adapter.updateHabits(MockHabits.habitItemList)
+  }
+
+  private fun addingDividerDecoration() {
+    // Adding Line between items with MaterialDividerItemDecoration
+    val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+
+    // Removing the line at the end of the list
+    divider.isLastItemDecorated = false
+
+    val resources = requireContext().resources
+
+    // Adding start spacing
+    divider.dividerInsetStart = resources.getDimensionPixelSize(R.dimen.horizontal_margin)
+
+    // Defining size of the line
+    divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_height)
+
+    binding.habitRecyclerView.addItemDecoration(divider)
+  }
+
+  private fun addingDividerSpace() {
+    binding.habitRecyclerView.addItemDecoration(HabitListItemDecoration(requireContext()))
   }
 
   override fun onDestroyView() {
