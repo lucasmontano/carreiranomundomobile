@@ -1,6 +1,6 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="horizontal_margin">16dp</dimen>
-    <dimen name="simple_margin">8dp</dimen>
-    <dimen name="divider_height">1dp</dimen>
+  <dimen name="fab_margin">16dp</dimen>
+  <dimen name="horizontal_margin">16dp</dimen>
+  <dimen name="simple_margin">8dp</dimen>
+  <dimen name="divider_height">1dp</dimen>
 </resources>

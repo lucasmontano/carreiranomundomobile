@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -62,6 +63,7 @@ class HabitListFragment : Fragment() {
 
     // Defining size of the line
     divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_height)
+    divider.dividerColor = ContextCompat.getColor(requireContext(), R.color.primary_200)
 
     binding.habitRecyclerView.addItemDecoration(divider)
   }
