@@ -1,16 +1,25 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.CarreiraNoMundoMobile" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-    </style>
+<resources>
+  <!-- Base application theme. -->
+  <style name="Theme.App" parent="Theme.Material3.DayNight">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/primary_800</item>
+    <item name="colorPrimaryVariant">@color/primary_700</item>
+    <item name="colorOnPrimary">@color/black</item>
+    <!-- Secondary brand color. -->
+    <item name="colorSecondary">@color/secondary_800</item>
+    <item name="colorSecondaryVariant">@color/secondary_800</item>
+    <item name="colorOnSecondary">@color/black</item>
+    <!-- Status bar color. -->
+    <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    <!-- Customize your theme here. -->
+    <item name="colorOutline">@color/primary_200</item>
+
+    <item name="floatingActionButtonStyle">@style/Widget.App.FloatingActionButton</item>
+  </style>
+
+  <style name="ThemeOverlay.App.FloatingActionButton" parent="">
+    <item name="colorSecondary">@color/primary_400</item>
+    <item name="colorOnSecondary">@color/primary_800</item>
+    <item name="colorOnSurface">@color/primary_800</item>
+  </style>
 </resources>
