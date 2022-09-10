@@ -1,18 +1,21 @@
 package com.lucasmontano.carreiranomundomobile
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.google.android.material.snackbar.Snackbar
+import com.lucasmontano.carreiranomundomobile.collections.HabitListViewModel
 import com.lucasmontano.carreiranomundomobile.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var binding: ActivityMainBinding
+
+  private val viewModel: HabitListViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -22,11 +25,8 @@ class MainActivity : AppCompatActivity() {
     setSupportActionBar(binding.toolbar)
     setupNavigation()
 
-    binding.fab.setOnClickListener { view ->
-      Snackbar
-        .make(view, "Add new Habit", Snackbar.LENGTH_LONG)
-        .setAction("Add", null)
-        .show()
+    binding.fab.setOnClickListener { _ ->
+      viewModel.addRandomHabit()
     }
   }
 

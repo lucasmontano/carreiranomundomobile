@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.lucasmontano.carreiranomundomobile.R
 import com.lucasmontano.carreiranomundomobile.databinding.FragmentHabitListBinding
-import com.lucasmontano.carreiranomundomobile.dummy.MockHabits
 
 /**
  * A [Fragment] that displays a list of habits.
@@ -23,9 +23,11 @@ class HabitListFragment : Fragment() {
 
   private lateinit var adapter: HabitListAdapter
 
+  private val viewModel: HabitListViewModel by activityViewModels()
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    adapter = HabitListAdapter()
+    adapter = HabitListAdapter(viewModel)
   }
 
   override fun onCreateView(
@@ -45,16 +47,29 @@ class HabitListFragment : Fragment() {
     // Adding decorations to our recycler view
     addingDividerDecoration()
 
-    // Updating the list of habits
-    adapter.updateHabits(MockHabits.habitItemList)
+    // Observer UI State for changes.
+    viewModel
+      .stateOnceAndStream()
+      .observe(viewLifecycleOwner) {
+        bindUiState(it)
+      }
+  }
+
+  /**
+   * Bind UI State to View.
+   *
+   * Update list of habits according to updates.
+   */
+  private fun bindUiState(uiState: HabitListViewModel.UiState) {
+    adapter.updateHabits(uiState.habitItemList)
   }
 
   private fun addingDividerDecoration() {
     // Adding Line between items with MaterialDividerItemDecoration
     val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
 
-    // Removing the line at the end of the list
-    divider.isLastItemDecorated = false
+    // Adding the line at the end of the list
+    divider.isLastItemDecorated = true
 
     val resources = requireContext().resources
 
