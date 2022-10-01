@@ -1,12 +1,13 @@
 package com.lucasmontano.carreiranomundomobile.dummy
 
 import com.lucasmontano.carreiranomundomobile.collections.HabitItem
+import com.lucasmontano.carreiranomundomobile.core.HabitsRepository
 import java.util.*
 
 /**
  * Mock data with [HabitItem] for the collection.
  */
-object MockHabits {
+object MockHabits : HabitsRepository {
 
   private val randomHabitList = listOf(
     HabitItem(
@@ -49,13 +50,13 @@ object MockHabits {
     )
   )
 
-  fun fetchHabits() = habitItemList.map { it.copy() }
+  override fun fetchHabits() = habitItemList.map { it.copy() }
 
-  fun addRandomNewHabit() {
+  override fun addRandomNewHabit() {
     habitItemList.add(randomHabit())
   }
 
-  fun toggleHabitCompleted(id: String) {
+  override fun toggleHabitCompleted(id: String) {
     val habitIndex = findHabitIndexById(id)
     val habit = habitItemList[habitIndex]
     habitItemList[habitIndex] = habit.copy(isCompleted = !habit.isCompleted)

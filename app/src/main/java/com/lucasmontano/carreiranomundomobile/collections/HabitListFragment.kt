@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.lucasmontano.carreiranomundomobile.R
 import com.lucasmontano.carreiranomundomobile.databinding.FragmentHabitListBinding
+import com.lucasmontano.carreiranomundomobile.dummy.MockHabits
 
 /**
  * A [Fragment] that displays a list of habits.
@@ -23,7 +24,9 @@ class HabitListFragment : Fragment() {
 
   private lateinit var adapter: HabitListAdapter
 
-  private val viewModel: HabitListViewModel by activityViewModels()
+  private val viewModel: HabitListViewModel by activityViewModels {
+    HabitListViewModel.Factory(MockHabits)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
