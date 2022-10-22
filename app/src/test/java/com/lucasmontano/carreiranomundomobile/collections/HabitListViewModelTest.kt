@@ -28,9 +28,7 @@ class HabitListViewModelTest {
     // Prepare
     testHabitRepository.habitList.add(
       HabitItem(
-        id = "ID",
-        title = "Test Habit",
-        isCompleted = false
+        id = "ID", title = "Test Habit", isCompleted = false
       )
     )
 
@@ -46,9 +44,7 @@ class HabitListViewModelTest {
     // Prepare
     testHabitRepository.habitList.add(
       HabitItem(
-        id = "ID",
-        title = "Test Habit",
-        isCompleted = false
+        id = "ID", title = "Test Habit", isCompleted = false
       )
     )
 
@@ -56,7 +52,7 @@ class HabitListViewModelTest {
     val uiStateInit = viewModel.stateOnceAndStream().getOrAwaitValue()
     val initialHabitListSize = uiStateInit.habitItemList.size
 
-    viewModel.addRandomHabit() // Add new Habit
+    viewModel.addHabit("Test Habit", emptyList()) // Add new Habit
 
     val updatedUiState = viewModel.stateOnceAndStream().getOrAwaitValue()
     val currentSize = updatedUiState.habitItemList.size

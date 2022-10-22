@@ -6,7 +6,7 @@ interface HabitsRepository {
 
   fun fetchHabits(): List<HabitItem>
 
-  fun addRandomNewHabit()
-
   fun toggleHabitCompleted(id: String)
+
+  fun addHabit(name: String, weekDays: List<Int>)
 }

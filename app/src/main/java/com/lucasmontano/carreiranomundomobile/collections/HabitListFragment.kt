@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.lucasmontano.carreiranomundomobile.R
@@ -34,8 +35,7 @@ class HabitListFragment : Fragment() {
   }
 
   override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
+    inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View {
     _binding = FragmentHabitListBinding.inflate(inflater, container, false)
     return binding.root
@@ -51,11 +51,14 @@ class HabitListFragment : Fragment() {
     addingDividerDecoration()
 
     // Observer UI State for changes.
-    viewModel
-      .stateOnceAndStream()
-      .observe(viewLifecycleOwner) {
-        bindUiState(it)
-      }
+    viewModel.stateOnceAndStream().observe(viewLifecycleOwner) {
+      bindUiState(it)
+    }
+
+    // Set Navigation Fab
+    binding.fab.setOnClickListener {
+      findNavController().navigate(R.id.action_habitList_to_habitForm)
+    }
   }
 
   /**
