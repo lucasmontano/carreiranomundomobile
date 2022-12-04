@@ -12,13 +12,9 @@ class TestHabitRepository : HabitsRepository {
 
   override fun fetchHabits() = habitList
 
-  override fun addRandomNewHabit() {
+  override fun addHabit(name: String,  weekDays: List<Int>) {
     habitList.add(
-      HabitItem(
-        id = UUID.randomUUID().toString(),
-        title = "Read the book",
-        isCompleted = false
-      )
+      HabitItem(id = UUID.randomUUID().toString(), title = name, isCompleted = false)
     )
   }
 

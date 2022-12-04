@@ -3,11 +3,22 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/nav_graph"
-  app:startDestination="@id/FirstFragment">
+  app:startDestination="@id/habitListFragment">
 
   <fragment
-    android:id="@+id/FirstFragment"
+    android:id="@+id/habitListFragment"
     android:name="com.lucasmontano.carreiranomundomobile.collections.HabitListFragment"
     android:label="@string/title_habit_list"
-    tools:layout="@layout/fragment_habit_list" />
+    tools:layout="@layout/fragment_habit_list">
+
+    <action
+      android:id="@+id/action_habitList_to_habitForm"
+      app:destination="@id/habitFormFragment" />
+  </fragment>
+
+  <fragment
+    android:id="@+id/habitFormFragment"
+    android:name="com.lucasmontano.carreiranomundomobile.form.HabitFormFragment"
+    android:label="@string/title_habit_form" />
+
 </navigation>

@@ -35,10 +35,12 @@ class HabitListViewModel(private val repository: HabitsRepository) : ViewModel()
 
   /**
    * Add new Random Habit.
-   * TODO replace this by a addHabit() with data coming from a form.
+   *
+   * @param name: The name you wanna give to this Habit
+   * @param habitDaysSelected: Which days do you wanna practice the Habit
    */
-  fun addRandomHabit() {
-    repository.addRandomNewHabit()
+  fun addHabit(name: String, habitDaysSelected: List<Int>) {
+    repository.addHabit(name, habitDaysSelected)
     refreshHabitList()
   }
 

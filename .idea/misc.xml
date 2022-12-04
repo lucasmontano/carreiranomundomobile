@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/item_divider_drawable.xml" value="0.113" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_habit_form.xml" value="0.30885416666666665" />
         <entry key="app/src/main/res/layout/fragment_habit_list.xml" value="0.13994565217391305" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1" />
         <entry key="app/src/main/res/layout/habit_item.xml" value="0.375" />
