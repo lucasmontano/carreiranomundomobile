@@ -1,21 +1,32 @@
 package com.lucasmontano.carreiranomundomobile.collections
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.lucasmontano.carreiranomundomobile.core.HabitsRepository
+import androidx.lifecycle.*
+import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCase
+import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCase
+import kotlinx.coroutines.launch
 
 /**
  * @see [https://developer.android.com/topic/libraries/architecture/viewmodel]
  */
-class HabitListViewModel(private val repository: HabitsRepository) : ViewModel() {
+class HabitListViewModel(
+  private val getHabitsForTodayUseCase: GetHabitsForTodayUseCase,
+  private val toggleProgressUseCase: ToggleProgressUseCase,
+) : ViewModel() {
 
   /**
    * Mutable Live Data that initialize with the current list of saved Habits.
    */
   private val uiState: MutableLiveData<UiState> by lazy {
-    MutableLiveData<UiState>(UiState(habitItemList = repository.fetchHabits()))
+    MutableLiveData<UiState>(UiState(habitItemList = emptyList()))
+  }
+
+  /**
+   * Refresh UI State whenever View Resumes.
+   */
+  fun onResume() {
+    viewModelScope.launch {
+      refreshHabitList()
+    }
   }
 
   /**
@@ -28,28 +39,15 @@ class HabitListViewModel(private val repository: HabitsRepository) : ViewModel()
   /**
    * Toggle a Habit complete status.
    */
-  fun toggleHabitCompleted(id: String) {
-    repository.toggleHabitCompleted(id)
-    refreshHabitList()
-  }
-
-  /**
-   * Add new Random Habit.
-   *
-   * @param name: The name you wanna give to this Habit
-   * @param habitDaysSelected: Which days do you wanna practice the Habit
-   */
-  fun addHabit(name: String, habitDaysSelected: List<Int>) {
-    repository.addHabit(name, habitDaysSelected)
-    refreshHabitList()
-  }
-
-  private fun refreshHabitList() {
-    uiState.value?.let { currentUiState ->
-      uiState.value = currentUiState.copy(
-        habitItemList = repository.fetchHabits()
-      )
+  fun toggleHabitCompleted(habitId: String) {
+    viewModelScope.launch {
+      toggleProgressUseCase(habitId)
+      refreshHabitList()
     }
+  }
+
+  private suspend fun refreshHabitList() {
+    uiState.postValue(UiState(getHabitsForTodayUseCase()))
   }
 
   /**
@@ -61,10 +59,13 @@ class HabitListViewModel(private val repository: HabitsRepository) : ViewModel()
    * ViewModel Factory needed to provide Repository injection to ViewModel.
    */
   @Suppress("UNCHECKED_CAST")
-  class Factory(private val repository: HabitsRepository) : ViewModelProvider.Factory {
+  class Factory(
+    private val toggleProgressUseCase: ToggleProgressUseCase,
+    private val getHabitsForTodayUseCase: GetHabitsForTodayUseCase,
+  ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return HabitListViewModel(repository) as T
+      return HabitListViewModel(getHabitsForTodayUseCase, toggleProgressUseCase) as T
     }
   }
 }

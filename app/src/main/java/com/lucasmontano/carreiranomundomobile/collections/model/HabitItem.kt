@@ -3,8 +3,9 @@ package com.lucasmontano.carreiranomundomobile.collections
 /**
  * Habit Model representing an Item in a ListView.
  *
+ * @param id the id of the Habit
  * @param title the title of the habit
- * @param isCompleted whether the habit is checked or not
+ * @param isCompleted TRUE whether the habit has a progress history
  */
 data class HabitItem(
   val id: String,
