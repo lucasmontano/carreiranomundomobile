@@ -1,4 +1,4 @@
-package com.lucasmontano.carreiranomundomobile.collections
+package com.lucasmontano.carreiranomundomobile.collections.model
 
 /**
  * Habit Model representing an Item in a ListView.

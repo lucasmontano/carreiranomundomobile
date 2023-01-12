@@ -1,4 +1,4 @@
-package com.lucasmontano.carreiranomundomobile.collections
+package com.lucasmontano.carreiranomundomobile.utils
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

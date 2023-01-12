@@ -3,6 +3,7 @@ package com.lucasmontano.carreiranomundomobile.collections
 import androidx.lifecycle.*
 import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCase
 import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCase
+import com.lucasmontano.carreiranomundomobile.collections.model.HabitItem
 import kotlinx.coroutines.launch
 
 /**

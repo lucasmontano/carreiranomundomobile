@@ -1,7 +1,7 @@
 package com.lucasmontano.carreiranomundomobile.collections.domain
 
 import android.util.Log
-import com.lucasmontano.carreiranomundomobile.collections.HabitItem
+import com.lucasmontano.carreiranomundomobile.collections.model.HabitItem
 import com.lucasmontano.carreiranomundomobile.core.repository.HabitRepository
 import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepository
 import java.util.*

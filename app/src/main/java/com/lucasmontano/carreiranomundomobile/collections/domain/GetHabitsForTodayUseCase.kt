@@ -1,6 +1,6 @@
 package com.lucasmontano.carreiranomundomobile.collections.domain
 
-import com.lucasmontano.carreiranomundomobile.collections.HabitItem
+import com.lucasmontano.carreiranomundomobile.collections.model.HabitItem
 
 interface GetHabitsForTodayUseCase {
 

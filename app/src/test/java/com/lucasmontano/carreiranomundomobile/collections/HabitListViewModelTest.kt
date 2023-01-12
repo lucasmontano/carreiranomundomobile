@@ -3,6 +3,9 @@ package com.lucasmontano.carreiranomundomobile.collections
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCase
 import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCase
+import com.lucasmontano.carreiranomundomobile.collections.model.HabitItem
+import com.lucasmontano.carreiranomundomobile.utils.TestCoroutineRule
+import com.lucasmontano.carreiranomundomobile.utils.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.junit.Test

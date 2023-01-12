@@ -1,4 +1,4 @@
-package com.lucasmontano.carreiranomundomobile.collections
+package com.lucasmontano.carreiranomundomobile.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
