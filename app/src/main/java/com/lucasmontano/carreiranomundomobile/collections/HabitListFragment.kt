@@ -11,8 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.lucasmontano.carreiranomundomobile.R
+import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCaseImpl
+import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCaseImpl
+import com.lucasmontano.carreiranomundomobile.core.repository.HabitRepositoryImpl
+import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepositoryImpl
 import com.lucasmontano.carreiranomundomobile.databinding.FragmentHabitListBinding
-import com.lucasmontano.carreiranomundomobile.dummy.MockHabits
 
 /**
  * A [Fragment] that displays a list of habits.
@@ -26,11 +29,21 @@ class HabitListFragment : Fragment() {
   private lateinit var adapter: HabitListAdapter
 
   private val viewModel: HabitListViewModel by activityViewModels {
-    HabitListViewModel.Factory(MockHabits)
+    val habitRepository = HabitRepositoryImpl
+    val progressRepository = ProgressRepositoryImpl
+    val getHabitsForTodayUseCase = GetHabitsForTodayUseCaseImpl(
+      progressRepository = progressRepository,
+      habitRepository = habitRepository,
+    )
+    HabitListViewModel.Factory(
+      getHabitsForTodayUseCase = getHabitsForTodayUseCase,
+      toggleProgressUseCase = ToggleProgressUseCaseImpl(progressRepository)
+    )
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    lifecycle.addObserver(HabitListLifecycleObserver(viewModel))
     adapter = HabitListAdapter(viewModel)
   }
 
@@ -87,10 +100,6 @@ class HabitListFragment : Fragment() {
     divider.dividerColor = ContextCompat.getColor(requireContext(), R.color.primary_200)
 
     binding.habitRecyclerView.addItemDecoration(divider)
-  }
-
-  private fun addingDividerSpace() {
-    binding.habitRecyclerView.addItemDecoration(HabitListItemDecoration(requireContext()))
   }
 
   override fun onDestroyView() {

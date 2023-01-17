@@ -1,10 +1,22 @@
 package com.lucasmontano.carreiranomundomobile.collections
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import org.junit.Before
+import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCase
+import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCase
+import com.lucasmontano.carreiranomundomobile.collections.model.HabitItem
+import com.lucasmontano.carreiranomundomobile.utils.TestCoroutineRule
+import com.lucasmontano.carreiranomundomobile.utils.getOrAwaitValue
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
+@ExperimentalCoroutinesApi
+@RunWith(MockitoJUnitRunner::class)
 class HabitListViewModelTest {
 
   /**
@@ -14,59 +26,48 @@ class HabitListViewModelTest {
   @get:Rule
   val instantExecutorRule = InstantTaskExecutorRule()
 
-  private val testHabitRepository = TestHabitRepository()
+  @get:Rule
+  val testCoroutineRule = TestCoroutineRule()
 
-  private val viewModel = HabitListViewModel(repository = testHabitRepository)
+  private val toggleProgressUseCase = mock<ToggleProgressUseCase>()
+  private val getHabitsForTodayUseCase = mock<GetHabitsForTodayUseCase>()
 
-  @Before
-  fun setup() {
-    testHabitRepository.habitList.clear()
-  }
+  private val viewModel = HabitListViewModel(
+    toggleProgressUseCase = toggleProgressUseCase,
+    getHabitsForTodayUseCase = getHabitsForTodayUseCase
+  )
 
   @Test
   fun `Verify uiState is initialized with Habits`() {
-    // Prepare
-    testHabitRepository.habitList.add(
-      HabitItem(
-        id = "ID", title = "Test Habit", isCompleted = false
+    testCoroutineRule.runBlockingTest {
+      // Prepare
+      whenever(getHabitsForTodayUseCase.invoke()).thenReturn(
+        listOf(
+          HabitItem(id = "ID", title = "title", isCompleted = false)
+        )
       )
-    )
+      viewModel.onResume()
 
-    // Execute
-    val uiState = viewModel.stateOnceAndStream().getOrAwaitValue()
+      // Execute
+      val uiState = viewModel.stateOnceAndStream().getOrAwaitValue()
 
-    // Verify
-    assert(uiState.habitItemList.isNotEmpty()) // verify uiState has items when initialized
+      // Verify
+      assert(uiState.habitItemList.isNotEmpty()) // verify uiState has items when initialized
+    }
   }
 
   @Test
-  fun `Verify uiState is updated when new Habit is added`() {
-    // Prepare
-    testHabitRepository.habitList.add(
-      HabitItem(
-        id = "ID", title = "Test Habit", isCompleted = false
-      )
-    )
+  fun `Verify toggleProgressUseCase is invoked when toggleHabitCompleted is called`() {
+    testCoroutineRule.runBlockingTest {
+      // Prepare
+      whenever(toggleProgressUseCase.invoke("ID")).thenReturn(Unit)
+      viewModel.onResume()
 
-    // Execute
-    val uiStateInit = viewModel.stateOnceAndStream().getOrAwaitValue()
-    val initialHabitListSize = uiStateInit.habitItemList.size
+      // Execute
+      viewModel.toggleHabitCompleted("ID")
 
-    viewModel.addHabit("Test Habit", emptyList()) // Add new Habit
-
-    val updatedUiState = viewModel.stateOnceAndStream().getOrAwaitValue()
-    val currentSize = updatedUiState.habitItemList.size
-    val expectedSize = initialHabitListSize + 1 // Expected size be initial + 1
-
-    // Verify
-    assert(currentSize == expectedSize)
-  }
-
-  @Test
-  fun `Verify uiState is updated when new Habit is completed`() {
-    // Observe Ui State
-    // Check a habit as completed
-    // Get updated UiState
-    // Verify the habit is now completed
+      // Verify
+      verify(toggleProgressUseCase).invoke("ID")
+    }
   }
 }
