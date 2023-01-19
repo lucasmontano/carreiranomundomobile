@@ -13,6 +13,7 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.lucasmontano.carreiranomundomobile.R
 import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCaseImpl
 import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCaseImpl
+import com.lucasmontano.carreiranomundomobile.core.database.AppDatabase
 import com.lucasmontano.carreiranomundomobile.core.repository.HabitRepositoryImpl
 import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepositoryImpl
 import com.lucasmontano.carreiranomundomobile.databinding.FragmentHabitListBinding
@@ -29,8 +30,9 @@ class HabitListFragment : Fragment() {
   private lateinit var adapter: HabitListAdapter
 
   private val viewModel: HabitListViewModel by activityViewModels {
-    val habitRepository = HabitRepositoryImpl
-    val progressRepository = ProgressRepositoryImpl
+    val db = AppDatabase.getInstance(requireContext())
+    val habitRepository = HabitRepositoryImpl(db)
+    val progressRepository = ProgressRepositoryImpl(db)
     val getHabitsForTodayUseCase = GetHabitsForTodayUseCaseImpl(
       progressRepository = progressRepository,
       habitRepository = habitRepository,
