@@ -1,38 +1,51 @@
 package com.lucasmontano.carreiranomundomobile.core.repository
 
 import android.util.Log
+import com.lucasmontano.carreiranomundomobile.core.database.AppDatabase
+import com.lucasmontano.carreiranomundomobile.core.database.entity.Progress
 import com.lucasmontano.carreiranomundomobile.core.model.ProgressDomain
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.util.*
 
-object ProgressRepositoryImpl : ProgressRepository {
+class ProgressRepositoryImpl(appDatabase: AppDatabase) : ProgressRepository {
 
-  private val progressListCache: MutableList<ProgressDomain> = mutableListOf()
+  private val dao = appDatabase.progressDao()
 
   override suspend fun fetch(habitId: String, completedAt: Long): List<ProgressDomain> {
-    val calendar = Calendar.getInstance()
-    calendar.timeInMillis = completedAt
-    return progressListCache.filter {
-      it.habitId == habitId && it.dayOfWeek == calendar.get(Calendar.DAY_OF_WEEK)
+    return dao.fetchProgressByHabit(habitId, completedAt).map { progress ->
+      val calendar = Calendar.getInstance()
+      calendar.timeInMillis = progress.completedAt
+      ProgressDomain(
+        id = progress.uuid,
+        habitId = habitId,
+        dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK),
+      )
     }
   }
 
   override suspend fun delete(id: String) {
     Log.d(LOG_TAG, "Losing progress on habitId: $id")
-    progressListCache.removeAll { it.id == id }
+    dao.delete(id)
   }
 
   override suspend fun add(habitId: String) {
-    val dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
-    val progress = ProgressDomain(
-      id = UUID.randomUUID().toString(),
-      habitId = habitId,
-      dayOfWeek = dayOfWeek
-    )
+    val today = Calendar.getInstance()
+    val dayOfWeek = today.get(Calendar.DAY_OF_WEEK)
 
     Log.d(LOG_TAG, "Making progress on $dayOfWeek for habitId: $habitId")
 
-    progressListCache.add(progress)
+    val progress = Progress(
+      uuid = UUID.randomUUID().toString(),
+      habitId = habitId,
+      completedAt = today.timeInMillis,
+    )
+    withContext(Dispatchers.IO) {
+      dao.insert(progress)
+    }
   }
 
-  private const val LOG_TAG = "HabitProgressRepository"
+  companion object {
+    private const val LOG_TAG = "HabitProgressRepository"
+  }
 }
