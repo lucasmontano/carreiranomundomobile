@@ -1,14 +1,13 @@
 package com.lucasmontano.carreiranomundomobile.core.repository
 
 import android.util.Log
-import com.lucasmontano.carreiranomundomobile.core.database.AppDatabase
+import com.lucasmontano.carreiranomundomobile.core.database.dao.HabitDao
 import com.lucasmontano.carreiranomundomobile.core.database.entity.Habit
 import com.lucasmontano.carreiranomundomobile.core.model.HabitDomain
 import java.util.*
+import javax.inject.Inject
 
-class HabitRepositoryImpl(appDatabase: AppDatabase) : HabitRepository {
-
-  private val dao = appDatabase.habitDao()
+class HabitRepositoryImpl @Inject constructor(private val dao: HabitDao) : HabitRepository {
 
   override suspend fun fetch(dayOfWeek: Int): List<HabitDomain> {
     Log.d(TAG, "Fetching habits for day of week $dayOfWeek")
