@@ -4,37 +4,25 @@ import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTod
 import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCaseImpl
 import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCase
 import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCaseImpl
-import com.lucasmontano.carreiranomundomobile.core.repository.HabitRepository
-import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class CollectionsModule {
+abstract class CollectionsModule {
 
   @Singleton
-  @Provides
-  fun providesGetHabitsForTodayUseCase(
-    progressRepository: ProgressRepository,
-    habitRepository: HabitRepository,
-  ): GetHabitsForTodayUseCase {
-    return GetHabitsForTodayUseCaseImpl(
-      progressRepository = progressRepository,
-      habitRepository = habitRepository
-    )
-  }
+  @Binds
+  abstract fun providesGetHabitsForTodayUseCase(
+    impl: GetHabitsForTodayUseCaseImpl
+  ): GetHabitsForTodayUseCase
 
   @Singleton
-  @Provides
-  fun providesToggleProgressUseCase(
-    progressRepository: ProgressRepository
-  ): ToggleProgressUseCase {
-    return ToggleProgressUseCaseImpl(
-      progressRepository = progressRepository
-    )
-  }
+  @Binds
+  abstract fun providesToggleProgressUseCase(
+    impl: ToggleProgressUseCaseImpl
+  ): ToggleProgressUseCase
 }
