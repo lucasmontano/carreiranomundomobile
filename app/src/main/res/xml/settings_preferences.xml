@@ -14,7 +14,6 @@
         app:title="@string/pref_send_email_reminder" />
 
     <EditTextPreference
-        android:id="@+id/reminderEmailPref"
         app:key="reminder_email"
         app:title="@string/pref_reminder_email"
         app:useSimpleSummaryProvider="true"/>
