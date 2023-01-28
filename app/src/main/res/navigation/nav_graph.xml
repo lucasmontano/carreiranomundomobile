@@ -14,11 +14,18 @@
     <action
       android:id="@+id/action_habitList_to_habitForm"
       app:destination="@id/habitFormFragment" />
+    <action
+        android:id="@+id/action_habitListFragment_to_settingsFragment"
+        app:destination="@id/settingsFragment" />
   </fragment>
 
   <fragment
     android:id="@+id/habitFormFragment"
     android:name="com.lucasmontano.carreiranomundomobile.form.HabitFormFragment"
     android:label="@string/title_habit_form" />
+  <fragment
+      android:id="@+id/settingsFragment"
+      android:name="com.lucasmontano.carreiranomundomobile.SettingsFragment"
+      android:label="@string/title_settings" />
 
 </navigation>

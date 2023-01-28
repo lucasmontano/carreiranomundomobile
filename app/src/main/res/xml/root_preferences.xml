@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreferenceCompat
+        app:key="allow_notification"
+        app:title="@string/pref_allow_notification" />
+
+    <SwitchPreferenceCompat
+        app:key="show_completed"
+        app:title="@string/pref_show_completed" />
+
+    <SwitchPreferenceCompat
+        app:key="send_reminder"
+        app:title="@string/pref_send_email_reminder" />
+
+    <EditTextPreference
+        android:id="@+id/reminderEmailPref"
+        app:key="reminder_email"
+        app:title="@string/pref_reminder_email"
+        app:useSimpleSummaryProvider="true"/>
+
+</PreferenceScreen>

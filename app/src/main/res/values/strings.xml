@@ -1,21 +1,31 @@
 <resources>
-  <string name="app_name">Hábitos</string>
-  <string name="title_activity_main">Meus Hábitos</string>
-  <string name="title_habit_list">Lista de Hábitos</string>
-  <string name="title_habit_form">Configurar Hábito</string>
+    <string name="app_name">Hábitos</string>
+    <string name="title_activity_main">Meus Hábitos</string>
+    <string name="title_habit_list">Lista de Hábitos</string>
+    <string name="title_habit_form">Configurar Hábito</string>
+    <string name="title_settings">Configurações</string>
 
-  <string name="habit_title">Título do Hábito</string>
-  <string name="habit_complete">Hábito foi completado?</string>
+    <string name="habit_title">Título do Hábito</string>
+    <string name="habit_complete">Hábito foi completado?</string>
 
-  <string name="mon">Segunda</string>
-  <string name="tue">Terça</string>
-  <string name="wed">Quarta</string>
-  <string name="thu">Quinta</string>
-  <string name="fri">Sexta</string>
-  <string name="sat">Sábado</string>
-  <string name="sun">Domingo</string>
+    <string name="mon">Segunda</string>
+    <string name="tue">Terça</string>
+    <string name="wed">Quarta</string>
+    <string name="thu">Quinta</string>
+    <string name="fri">Sexta</string>
+    <string name="sat">Sábado</string>
+    <string name="sun">Domingo</string>
 
-  <!-- Content Descriptions and Accessibility Text -->
-  <string name="accessibility_add">Adicionar Hábito</string>
-  <string name="save">Salvar</string>
+    <!-- Content Descriptions and Accessibility Text -->
+    <string name="accessibility_add">Adicionar Hábito</string>
+    <string name="save">Salvar</string>
+
+    <!-- Actions -->
+    <string name="action_settings">Configurações</string>
+
+    <!-- Application Settings -->
+    <string name="pref_show_completed">Exibir Concluídos</string>
+    <string name="pref_allow_notification">Enviar Notificações</string>
+    <string name="pref_send_email_reminder">Lembretes por E-mail?</string>
+    <string name="pref_reminder_email">E-mail para Lembretes</string>
 </resources>
