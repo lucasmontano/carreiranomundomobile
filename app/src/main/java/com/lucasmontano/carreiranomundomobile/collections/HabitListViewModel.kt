@@ -1,15 +1,21 @@
 package com.lucasmontano.carreiranomundomobile.collections
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCase
 import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCase
 import com.lucasmontano.carreiranomundomobile.collections.model.HabitItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * @see [https://developer.android.com/topic/libraries/architecture/viewmodel]
  */
-class HabitListViewModel(
+@HiltViewModel
+class HabitListViewModel @Inject constructor(
   private val getHabitsForTodayUseCase: GetHabitsForTodayUseCase,
   private val toggleProgressUseCase: ToggleProgressUseCase,
 ) : ViewModel() {
@@ -55,18 +61,4 @@ class HabitListViewModel(
    * UI State containing every data needed to show Habits.
    */
   data class UiState(val habitItemList: List<HabitItem>)
-
-  /**
-   * ViewModel Factory needed to provide Repository injection to ViewModel.
-   */
-  @Suppress("UNCHECKED_CAST")
-  class Factory(
-    private val toggleProgressUseCase: ToggleProgressUseCase,
-    private val getHabitsForTodayUseCase: GetHabitsForTodayUseCase,
-  ) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return HabitListViewModel(getHabitsForTodayUseCase, toggleProgressUseCase) as T
-    }
-  }
 }

@@ -6,21 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.lucasmontano.carreiranomundomobile.R
-import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsForTodayUseCaseImpl
-import com.lucasmontano.carreiranomundomobile.collections.domain.ToggleProgressUseCaseImpl
-import com.lucasmontano.carreiranomundomobile.core.database.AppDatabase
-import com.lucasmontano.carreiranomundomobile.core.repository.HabitRepositoryImpl
-import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepositoryImpl
 import com.lucasmontano.carreiranomundomobile.databinding.FragmentHabitListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A [Fragment] that displays a list of habits.
  */
+@AndroidEntryPoint
 class HabitListFragment : Fragment() {
 
   private var _binding: FragmentHabitListBinding? = null
@@ -29,22 +26,13 @@ class HabitListFragment : Fragment() {
 
   private lateinit var adapter: HabitListAdapter
 
-  private val viewModel: HabitListViewModel by activityViewModels {
-    val db = AppDatabase.getInstance(requireContext())
-    val habitRepository = HabitRepositoryImpl(db)
-    val progressRepository = ProgressRepositoryImpl(db)
-    val getHabitsForTodayUseCase = GetHabitsForTodayUseCaseImpl(
-      progressRepository = progressRepository,
-      habitRepository = habitRepository,
-    )
-    HabitListViewModel.Factory(
-      getHabitsForTodayUseCase = getHabitsForTodayUseCase,
-      toggleProgressUseCase = ToggleProgressUseCaseImpl(progressRepository)
-    )
-  }
+  private lateinit var viewModel: HabitListViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    viewModel = ViewModelProvider(this)[HabitListViewModel::class.java]
+
     lifecycle.addObserver(HabitListLifecycleObserver(viewModel))
     adapter = HabitListAdapter(viewModel)
   }

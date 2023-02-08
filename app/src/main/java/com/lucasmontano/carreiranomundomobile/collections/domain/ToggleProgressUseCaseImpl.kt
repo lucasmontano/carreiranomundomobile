@@ -2,8 +2,9 @@ package com.lucasmontano.carreiranomundomobile.collections.domain
 
 import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepository
 import java.util.*
+import javax.inject.Inject
 
-class ToggleProgressUseCaseImpl(
+class ToggleProgressUseCaseImpl @Inject constructor(
   private val progressRepository: ProgressRepository
 ) : ToggleProgressUseCase {
 

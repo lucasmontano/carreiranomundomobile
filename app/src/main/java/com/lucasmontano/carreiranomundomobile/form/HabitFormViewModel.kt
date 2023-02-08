@@ -1,12 +1,14 @@
 package com.lucasmontano.carreiranomundomobile.form
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.lucasmontano.carreiranomundomobile.core.repository.HabitRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HabitFormViewModel(
+@HiltViewModel
+class HabitFormViewModel @Inject constructor(
   private val habitRepository: HabitRepository
 ) : ViewModel() {
 
@@ -19,19 +21,6 @@ class HabitFormViewModel(
   fun addHabit(name: String, habitDaysSelected: List<Int>) {
     viewModelScope.launch {
       habitRepository.add(name, habitDaysSelected)
-    }
-  }
-
-  /**
-   * ViewModel Factory needed to provide Repository injection to ViewModel.
-   */
-  @Suppress("UNCHECKED_CAST")
-  class Factory(
-    private val habitRepository: HabitRepository,
-  ) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return HabitFormViewModel(habitRepository) as T
     }
   }
 }

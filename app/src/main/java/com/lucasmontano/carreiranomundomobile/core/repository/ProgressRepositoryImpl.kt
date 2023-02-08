@@ -1,16 +1,17 @@
 package com.lucasmontano.carreiranomundomobile.core.repository
 
 import android.util.Log
-import com.lucasmontano.carreiranomundomobile.core.database.AppDatabase
+import com.lucasmontano.carreiranomundomobile.core.database.dao.ProgressDao
 import com.lucasmontano.carreiranomundomobile.core.database.entity.Progress
 import com.lucasmontano.carreiranomundomobile.core.model.ProgressDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
+import javax.inject.Inject
 
-class ProgressRepositoryImpl(appDatabase: AppDatabase) : ProgressRepository {
-
-  private val dao = appDatabase.progressDao()
+class ProgressRepositoryImpl @Inject constructor(
+  private val dao: ProgressDao
+) : ProgressRepository {
 
   override suspend fun fetch(habitId: String, completedAt: Long): List<ProgressDomain> {
     return dao.fetchProgressByHabit(habitId, completedAt).map { progress ->
