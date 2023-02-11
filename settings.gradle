@@ -31,5 +31,8 @@ dependencyResolutionManagement {
 
 enableFeaturePreview("VERSION_CATALOGS")
 
-rootProject.name = "CarreiraNoMundoMobile"
 include ':app'
+include ':core:data'
+include ':core:ui'
+include ':features:form'
+include ':features:collection'

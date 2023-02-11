@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.lucasmontano.carreiranomundomobile.features.collection'
+    compileSdk rootProject.ext.sdkVersion
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation project(':core:data')
+    implementation project(':core:ui')
+
+    implementation libs.bundles.navigation
+
+    implementation libs.androidx.core.ktx
+
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+
+    implementation libs.material
+
+    testImplementation libs.androidx.junit.ktx
+    testImplementation libs.androidx.core.ktx.test
+    testImplementation libs.junit
+    testImplementation libs.mockito.core
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.core.testing
+    testImplementation libs.kotlinx.coroutines.test
+    testImplementation libs.mockk
+
+    androidTestImplementation libs.androidx.junit.ktx
+    androidTestImplementation libs.androidx.espresso.core
+}
