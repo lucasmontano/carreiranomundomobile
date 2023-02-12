@@ -1,0 +1,50 @@
+[versions]
+androidXAppcompatVersion = "1.6.0"
+androidXConstraintlayoutVersion = "2.1.4"
+androidXCoreVersion = "1.9.0"
+androidXMaterialVersion = "1.8.0"
+androidXNavigationVersion = "2.5.3"
+androidCoreTestingVersion = "1.1.1"
+androidXEspressoVersion = "3.5.1"
+androidXTestJunitVersion = "1.1.5"
+androidXTestCoreVersion = "1.5.0"
+coroutinesTestVersion = "1.6.4"
+gradleVersion = "7.4.1"
+junitVersion = "4.13.2"
+mockitoCoreVersion = "4.8.0"
+mockitoKotlinVersion = "4.0.0"
+mockkVersion = "1.13.3"
+hiltVersion = "2.44"
+kotlinVersion = "1.7.21"
+roomVersion = "2.5.0"
+
+[libraries]
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidXAppcompatVersion" }
+androidx-constraintlayout = { module = 'androidx.constraintlayout:constraintlayout', version.ref = "androidXConstraintlayoutVersion" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidXCoreVersion" }
+androidx-core-ktx-test = { module = "androidx.test:core-ktx", version.ref = "androidXTestCoreVersion" }
+androidx-espresso-core = { module = 'androidx.test.espresso:espresso-core', version.ref = "androidXEspressoVersion" }
+androidx-junit-ktx = { module = 'androidx.test.ext:junit-ktx', version.ref = "androidXTestJunitVersion" }
+androidx-navigation-fragment-ktx = { module = 'androidx.navigation:navigation-fragment-ktx', version.ref = "androidXNavigationVersion" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidXNavigationVersion" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+
+core-testing = { module = 'android.arch.core:core-testing', version.ref = "androidCoreTestingVersion" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltVersion" }
+kotlinx-coroutines-test = { module = 'org.jetbrains.kotlinx:kotlinx-coroutines-test', version.ref = "coroutinesTestVersion" }
+junit = { module = 'junit:junit', version.ref = "junitVersion" }
+material = { module = "com.google.android.material:material", version.ref = "androidXMaterialVersion" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCoreVersion" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlinVersion" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockkVersion" }
+
+[bundles]
+navigation = ["androidx-navigation-fragment-ktx", "androidx-navigation-ui-ktx"]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradleVersion" }
+android-library = { id = "com.android.library", version.ref = "gradleVersion" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinVersion" }
