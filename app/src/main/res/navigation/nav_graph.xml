@@ -12,7 +12,7 @@
     tools:layout="@layout/fragment_habit_list">
 
     <action
-      android:id="@+id/action_habitList_to_habitForm"
+      android:id="@id/action_habitList_to_habitForm"
       app:destination="@id/habitFormFragment" />
   </fragment>
 
