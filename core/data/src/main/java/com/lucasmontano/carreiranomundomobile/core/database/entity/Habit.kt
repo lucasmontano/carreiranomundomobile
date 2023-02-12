@@ -7,7 +7,7 @@ import androidx.room.TypeConverters
 import com.lucasmontano.carreiranomundomobile.core.database.DaysOfWeekConverter
 
 @Entity(tableName = "habit")
-data class Habit(
+internal data class Habit(
   @PrimaryKey val uuid: String,
   @ColumnInfo(name = "title") val title: String,
   @TypeConverters(DaysOfWeekConverter::class)

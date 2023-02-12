@@ -12,23 +12,23 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object RoomModule {
+internal object RoomModule {
 
   @Singleton
   @Provides
-  fun providesRoomDatabase(application: Application): com.lucasmontano.carreiranomundomobile.core.database.AppDatabase {
-    return com.lucasmontano.carreiranomundomobile.core.database.AppDatabase.getInstance(application)
+  fun providesRoomDatabase(application: Application): AppDatabase {
+    return AppDatabase.getInstance(application)
   }
 
   @Singleton
   @Provides
-  fun providesHabitDao(database: com.lucasmontano.carreiranomundomobile.core.database.AppDatabase): com.lucasmontano.carreiranomundomobile.core.database.dao.HabitDao {
+  fun providesHabitDao(database: AppDatabase): HabitDao {
     return database.habitDao()
   }
 
   @Singleton
   @Provides
-  fun providesProgressDao(database: com.lucasmontano.carreiranomundomobile.core.database.AppDatabase): com.lucasmontano.carreiranomundomobile.core.database.dao.ProgressDao {
+  fun providesProgressDao(database: AppDatabase): ProgressDao {
     return database.progressDao()
   }
 }

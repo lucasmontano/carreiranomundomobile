@@ -12,7 +12,7 @@ import com.lucasmontano.carreiranomundomobile.core.database.entity.Progress
 
 @Database(entities = [Habit::class, Progress::class], version = 1, exportSchema = false)
 @TypeConverters(DaysOfWeekConverter::class)
-abstract class AppDatabase : RoomDatabase() {
+internal abstract class AppDatabase : RoomDatabase() {
 
   abstract fun progressDao(): ProgressDao
 

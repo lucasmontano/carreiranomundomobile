@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
-class ProgressRepositoryImpl @Inject constructor(
+internal class ProgressRepositoryImpl @Inject constructor(
   private val dao: ProgressDao
 ) : ProgressRepository {
 

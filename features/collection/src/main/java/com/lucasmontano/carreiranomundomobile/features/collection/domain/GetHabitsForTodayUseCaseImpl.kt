@@ -7,7 +7,7 @@ import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepository
 import java.util.*
 import javax.inject.Inject
 
-class GetHabitsForTodayUseCaseImpl @Inject constructor(
+internal class GetHabitsForTodayUseCaseImpl @Inject constructor(
   private val progressRepository: ProgressRepository,
   private val habitRepository: HabitRepository,
 ) : GetHabitsForTodayUseCase {

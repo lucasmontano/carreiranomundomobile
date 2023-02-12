@@ -6,7 +6,7 @@ import androidx.room.Query
 import com.lucasmontano.carreiranomundomobile.core.database.entity.Habit
 
 @Dao
-interface HabitDao {
+internal interface HabitDao {
 
   @Query("SELECT * FROM habit WHERE daysOfWeek LIKE '%'||:dayOfWeek||'%'")
   suspend fun fetchByDayOfWeek(dayOfWeek: Int): List<Habit>

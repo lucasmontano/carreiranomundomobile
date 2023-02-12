@@ -6,7 +6,7 @@ import androidx.room.Query
 import com.lucasmontano.carreiranomundomobile.core.database.entity.Progress
 
 @Dao
-interface ProgressDao {
+internal interface ProgressDao {
 
   @Query(
     """

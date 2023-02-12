@@ -2,7 +2,7 @@ package com.lucasmontano.carreiranomundomobile.core.database
 
 import androidx.room.TypeConverter
 
-class DaysOfWeekConverter {
+internal class DaysOfWeekConverter {
 
   @TypeConverter
   fun fromDaysOfWeek(value: List<Int>): String {

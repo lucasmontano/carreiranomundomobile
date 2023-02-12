@@ -12,13 +12,13 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class RepositoryModule {
+internal abstract class RepositoryModule {
 
   @Singleton
   @Binds
-  abstract fun providesHabitRepository(impl: com.lucasmontano.carreiranomundomobile.core.repository.HabitRepositoryImpl): com.lucasmontano.carreiranomundomobile.core.repository.HabitRepository
+  abstract fun providesHabitRepository(impl: HabitRepositoryImpl): HabitRepository
 
   @Singleton
   @Binds
-  abstract fun providesProgressRepository(impl: com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepositoryImpl): com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepository
+  abstract fun providesProgressRepository(impl: ProgressRepositoryImpl): ProgressRepository
 }

@@ -4,7 +4,7 @@ import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepository
 import java.util.*
 import javax.inject.Inject
 
-class ToggleProgressUseCaseImpl @Inject constructor(
+internal class ToggleProgressUseCaseImpl @Inject constructor(
   private val progressRepository: ProgressRepository
 ) : ToggleProgressUseCase {
 
