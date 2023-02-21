@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        def nav_version = "2.5.3"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    }
+}
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
@@ -10,6 +19,6 @@ plugins {
 
 ext {
     sdkVersion = 33
-    minVersion = 21
+    minVersion = 26
     targetVersion = 31
 }

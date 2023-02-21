@@ -11,6 +11,15 @@ interface HabitDao {
   @Query("SELECT * FROM habit WHERE daysOfWeek LIKE '%'||:dayOfWeek||'%'")
   suspend fun fetchByDayOfWeek(dayOfWeek: Int): List<Habit>
 
+  @Query("SELECT * FROM habit")
+  suspend fun fetchAll(): List<Habit>
+
+  @Query("""
+    SELECT * FROM habit
+    WHERE uuid LIKE :habitId
+  """)
+  suspend fun fetchHabitById(habitId: String): Habit
+
   @Insert
   suspend fun insert(habit: Habit)
 }

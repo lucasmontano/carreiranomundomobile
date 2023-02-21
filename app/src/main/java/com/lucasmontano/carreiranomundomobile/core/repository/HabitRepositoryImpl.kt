@@ -9,28 +9,45 @@ import javax.inject.Inject
 
 class HabitRepositoryImpl @Inject constructor(private val dao: HabitDao) : HabitRepository {
 
-  override suspend fun fetch(dayOfWeek: Int): List<HabitDomain> {
-    Log.d(TAG, "Fetching habits for day of week $dayOfWeek")
-    return dao.fetchByDayOfWeek(dayOfWeek).map {
-      HabitDomain(
-        id = it.uuid,
-        title = it.title,
-        daysOfWeek = it.daysOfWeek
-      )
+    override suspend fun fetch(dayOfWeek: Int): List<HabitDomain> {
+        Log.d(TAG, "Fetching habits for day of week $dayOfWeek")
+        return dao.fetchByDayOfWeek(dayOfWeek).map {
+            HabitDomain(
+                id = it.uuid,
+                title = it.title,
+                daysOfWeek = it.daysOfWeek
+            )
+        }
     }
-  }
 
-  override suspend fun add(title: String, daysOfWeek: List<Int>) {
-    Log.d(TAG, "Adding new Habit $title for days $daysOfWeek")
-    val habit = Habit(
-      uuid = UUID.randomUUID().toString(),
-      title = title,
-      daysOfWeek = daysOfWeek
-    )
-    dao.insert(habit)
-  }
+    override suspend fun fetchAll(): List<HabitDomain> {
+        Log.d(TAG, "Fetching all habits")
+        return dao.fetchAll().map {
+            HabitDomain(
+                id = it.uuid,
+                title = it.title,
+                daysOfWeek = it.daysOfWeek
+            )
+        }
+    }
 
-  companion object {
-    private const val TAG = "HabitRepository"
-  }
+    override suspend fun fetchHabitById(habitId: String): HabitDomain {
+        Log.d(TAG, "Fetching habit by id ${habitId}")
+        val habit = dao.fetchHabitById(habitId)
+        return HabitDomain(id = habit.uuid, title = habit.title, daysOfWeek = habit.daysOfWeek)
+    }
+
+    override suspend fun add(title: String, daysOfWeek: List<Int>) {
+        Log.d(TAG, "Adding new Habit $title for days $daysOfWeek")
+        val habit = Habit(
+            uuid = UUID.randomUUID().toString(),
+            title = title,
+            daysOfWeek = daysOfWeek
+        )
+        dao.insert(habit)
+    }
+
+    companion object {
+        private const val TAG = "HabitRepository"
+    }
 }

@@ -1,11 +1,11 @@
 package com.lucasmontano.carreiranomundomobile.collections
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.content.ContextCompat
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,6 +62,21 @@ class HabitListFragment : Fragment() {
     binding.fab.setOnClickListener {
       findNavController().navigate(R.id.action_habitList_to_habitForm)
     }
+
+    val menuHost = requireActivity()
+    menuHost.addMenuProvider(object : MenuProvider {
+      override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menuInflater.inflate(R.menu.menu_main, menu)
+      }
+
+      override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        if (menuItem.itemId == R.id.menu_item_backlog) {
+          findNavController().navigate(R.id.action_habitListFragment_to_habitBacklogListFragment)
+          return true
+        }
+        return false
+      }
+    }, viewLifecycleOwner, Lifecycle.State.RESUMED)
   }
 
   /**
