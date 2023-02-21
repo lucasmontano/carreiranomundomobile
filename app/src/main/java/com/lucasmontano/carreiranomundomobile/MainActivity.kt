@@ -9,6 +9,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.lucasmontano.carreiranomundomobile.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import android.content.Intent
+import android.net.Uri
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -24,6 +26,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         setupNavigation()
+
+        // Getting app link information
+        val appLinkIntent: Intent = intent
+        val appLinkData: Uri? = appLinkIntent.data
+
+        // Handling deep link to backlog screen
+        if (appLinkData?.path.equals("/backlog")) {
+            navController.navigate(R.id.action_habitListFragment_to_habitBacklogListFragment)
+        }
     }
 
     private fun setupNavigation() {
