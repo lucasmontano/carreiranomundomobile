@@ -7,18 +7,18 @@
 
   <fragment
     android:id="@+id/habitListFragment"
-    android:name="com.lucasmontano.carreiranomundomobile.collections.HabitListFragment"
+    android:name="com.lucasmontano.carreiranomundomobile.features.collection.HabitListFragment"
     android:label="@string/title_habit_list"
     tools:layout="@layout/fragment_habit_list">
 
     <action
-      android:id="@+id/action_habitList_to_habitForm"
+      android:id="@id/action_habitList_to_habitForm"
       app:destination="@id/habitFormFragment" />
   </fragment>
 
   <fragment
     android:id="@+id/habitFormFragment"
-    android:name="com.lucasmontano.carreiranomundomobile.form.HabitFormFragment"
+    android:name="com.lucasmontano.carreiranomundomobile.features.form.HabitFormFragment"
     android:label="@string/title_habit_form" />
 
 </navigation>

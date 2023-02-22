@@ -1,0 +1,22 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.lucasmontano.carreiranomundomobile.core.data'
+    compileSdk rootProject.ext.sdkVersion
+}
+
+dependencies {
+
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+
+    implementation libs.androidx.room.ktx
+    kapt libs.androidx.room.compiler
+
+    testImplementation libs.androidx.junit.ktx
+}
