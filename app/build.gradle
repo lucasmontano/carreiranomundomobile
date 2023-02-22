@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation project(':features:experiments')
     implementation project(':features:form')
     implementation project(':features:collection')
 
