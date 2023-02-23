@@ -1,4 +1,4 @@
-package com.lucasmontano.carreiranomundomobile.collections
+package com.lucasmontano.carreiranomundomobile.features.collection
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.lucasmontano.carreiranomundomobile.collections.model.HabitBacklogItem
-import com.lucasmontano.carreiranomundomobile.databinding.HabitBacklogItemBinding
+import com.lucasmontano.carreiranomundomobile.features.collection.databinding.HabitBacklogItemBinding
 
 class HabitBacklogListAdapter(
     private val onItemClick: (Int) -> Unit

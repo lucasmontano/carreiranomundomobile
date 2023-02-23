@@ -1,4 +1,4 @@
-package com.lucasmontano.carreiranomundomobile.details
+package com.lucasmontano.carreiranomundomobile.features.form.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.chip.Chip
 import com.lucasmontano.carreiranomundomobile.core.model.HabitHistoryDomain
-import com.lucasmontano.carreiranomundomobile.databinding.FragmentHabitDetailsBinding
+import com.lucasmontano.carreiranomundomobile.features.form.databinding.FragmentHabitDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 import java.time.ZoneId

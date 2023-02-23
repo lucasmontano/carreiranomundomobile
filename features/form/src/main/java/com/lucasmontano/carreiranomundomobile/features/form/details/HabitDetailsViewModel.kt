@@ -1,9 +1,9 @@
-package com.lucasmontano.carreiranomundomobile.details
+package com.lucasmontano.carreiranomundomobile.features.form.details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.lucasmontano.carreiranomundomobile.core.model.HabitHistoryDomain
-import com.lucasmontano.carreiranomundomobile.details.domain.GetHabitHistoryUseCase
+import com.lucasmontano.carreiranomundomobile.features.form.details.domain.GetHabitHistoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

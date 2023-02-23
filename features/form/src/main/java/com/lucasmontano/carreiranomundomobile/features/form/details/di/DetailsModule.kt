@@ -1,7 +1,7 @@
-package com.lucasmontano.carreiranomundomobile.details.di
+package com.lucasmontano.carreiranomundomobile.features.form.details.di
 
-import com.lucasmontano.carreiranomundomobile.details.domain.GetHabitHistoryUseCase
-import com.lucasmontano.carreiranomundomobile.details.domain.GetHabitHistoryUseCaseImpl
+import com.lucasmontano.carreiranomundomobile.features.form.details.domain.GetHabitHistoryUseCase
+import com.lucasmontano.carreiranomundomobile.features.form.details.domain.GetHabitHistoryUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
