@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation project(':features:form')
+    implementation project(':features:collection')
 
     implementation libs.bundles.navigation
 
@@ -57,18 +59,6 @@ dependencies {
     kapt libs.hilt.compiler
 
     implementation libs.material
-
-    testImplementation libs.androidx.junit.ktx
-    testImplementation libs.androidx.core.ktx.test
-    testImplementation libs.junit
-    testImplementation libs.mockito.core
-    testImplementation libs.mockito.kotlin
-    testImplementation libs.core.testing
-    testImplementation libs.kotlinx.coroutines.test
-    testImplementation libs.mockk
-
-    androidTestImplementation libs.androidx.junit.ktx
-    androidTestImplementation libs.androidx.espresso.core
 }
 
 // Allow references to generated code

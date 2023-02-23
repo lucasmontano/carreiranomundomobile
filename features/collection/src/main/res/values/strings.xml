@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!-- Content Descriptions and Accessibility Text -->
+  <string name="accessibility_add">Adicionar Hábito</string>
+</resources>

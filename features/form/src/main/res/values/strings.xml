@@ -1,0 +1,12 @@
+<resources>
+  <string name="mon">Segunda</string>
+  <string name="tue">Terça</string>
+  <string name="wed">Quarta</string>
+  <string name="thu">Quinta</string>
+  <string name="fri">Sexta</string>
+  <string name="sat">Sábado</string>
+  <string name="sun">Domingo</string>
+
+  <string name="habit_title">Título do Hábito</string>
+  <string name="save">Salvar</string>
+</resources>
