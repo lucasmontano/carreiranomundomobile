@@ -7,8 +7,9 @@ import com.lucasmontano.carreiranomundomobile.core.model.HabitDomain
 import java.util.*
 import javax.inject.Inject
 
-internal class HabitRepositoryImpl @Inject constructor(private val dao: HabitDao) :
-  HabitRepository {
+internal class HabitRepositoryImpl @Inject constructor(
+  private val dao: HabitDao
+) : HabitRepository {
 
   override suspend fun fetch(dayOfWeek: Int): List<HabitDomain> {
     Log.d(TAG, "Fetching habits for day of week $dayOfWeek")

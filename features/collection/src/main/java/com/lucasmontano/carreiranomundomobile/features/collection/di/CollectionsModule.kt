@@ -1,7 +1,7 @@
 package com.lucasmontano.carreiranomundomobile.features.collection.di
 
-import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsBacklogUseCase
-import com.lucasmontano.carreiranomundomobile.collections.domain.GetHabitsBacklogUseCaseImpl
+import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsBacklogUseCase
+import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsBacklogUseCaseImpl
 import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsForTodayUseCase
 import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsForTodayUseCaseImpl
 import com.lucasmontano.carreiranomundomobile.features.collection.domain.ToggleProgressUseCase

@@ -1,4 +1,4 @@
-package com.lucasmontano.carreiranomundomobile.collections.domain
+package com.lucasmontano.carreiranomundomobile.features.collection.domain
 
 import com.lucasmontano.carreiranomundomobile.collections.model.HabitBacklogItem
 

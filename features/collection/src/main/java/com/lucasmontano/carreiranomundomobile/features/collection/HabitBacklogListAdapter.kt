@@ -14,6 +14,7 @@ import com.lucasmontano.carreiranomundomobile.features.collection.databinding.Ha
 class HabitBacklogListAdapter(
   private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<HabitBacklogListAdapter.ViewHolder>() {
+
   private val asyncListDiffer: AsyncListDiffer<HabitBacklogItem> =
     AsyncListDiffer(this, DiffCallback)
 
