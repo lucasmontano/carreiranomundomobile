@@ -17,6 +17,8 @@ mockkVersion = "1.13.3"
 hiltVersion = "2.44"
 kotlinVersion = "1.7.21"
 roomVersion = "2.5.0"
+legacySupportV4 = "1.0.0"
+androidXLifecycleVersion = "2.5.1"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidXAppcompatVersion" }
@@ -29,6 +31,10 @@ androidx-navigation-fragment-ktx = { module = 'androidx.navigation:navigation-fr
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidXNavigationVersion" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+androidx-legacy = {module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4"}
+androidx-lifecycle-livedata-ktx = {module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidXLifecycleVersion"}
+androidx-lifecycle-viewmodel-ktx = {module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidXLifecycleVersion"}
+androidx-lifecycle-navigation-navigationSafeArgs = {module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "androidXNavigationVersion"}
 
 core-testing = { module = 'android.arch.core:core-testing', version.ref = "androidCoreTestingVersion" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
