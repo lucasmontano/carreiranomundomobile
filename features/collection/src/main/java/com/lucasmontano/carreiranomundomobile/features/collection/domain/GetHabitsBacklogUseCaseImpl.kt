@@ -6,24 +6,24 @@ import com.lucasmontano.carreiranomundomobile.core.repository.HabitRepository
 import javax.inject.Inject
 
 class GetHabitsBacklogUseCaseImpl @Inject constructor(
-    private val habitRepository: HabitRepository,
+  private val habitRepository: HabitRepository,
 ) : GetHabitsBacklogUseCase {
-    override suspend fun invoke(): List<HabitBacklogItem> {
+  override suspend fun invoke(): List<HabitBacklogItem> {
 
-        Log.d(TAG, "Fetching all habits")
+    Log.d(TAG, "Fetching all habits")
 
-        return habitRepository
-            .fetchAll()
-            .map { habit ->
-                HabitBacklogItem(
-                    id = habit.id,
-                    title = habit.title,
-                    daysOfWeek = habit.daysOfWeek
-                )
-            }
-    }
+    return habitRepository
+      .fetchAll()
+      .map { habit ->
+        HabitBacklogItem(
+          id = habit.id,
+          title = habit.title,
+          daysOfWeek = habit.daysOfWeek
+        )
+      }
+  }
 
-    companion object {
-        private const val TAG = "GetHabitsBacklog"
-    }
+  companion object {
+    private const val TAG = "GetHabitsBacklog"
+  }
 }

@@ -4,5 +4,5 @@ import com.lucasmontano.carreiranomundomobile.collections.model.HabitBacklogItem
 
 interface GetHabitsBacklogUseCase {
 
-    suspend operator fun invoke(): List<HabitBacklogItem>
+  suspend operator fun invoke(): List<HabitBacklogItem>
 }

@@ -9,12 +9,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HabitDetailsViewModel @Inject constructor(
-    private val getHabitHistoryUseCase: GetHabitHistoryUseCase,
-    private val state: SavedStateHandle
+  private val getHabitHistoryUseCase: GetHabitHistoryUseCase,
+  private val state: SavedStateHandle
 ) : ViewModel() {
 
-    suspend fun getHabitDetails(): HabitHistoryDomain {
-        val habitId = state.get<String>("habitUUID")!!
-        return getHabitHistoryUseCase.invoke(habitId)
-    }
+  suspend fun getHabitDetails(): HabitHistoryDomain {
+    val habitId = state.get<String>("habitUUID")!!
+    return getHabitHistoryUseCase.invoke(habitId)
+  }
 }

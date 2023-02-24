@@ -18,60 +18,60 @@ import org.mockito.kotlin.whenever
 @RunWith(MockitoJUnitRunner::class)
 class HabitListViewModelTest {
 
-    /**
-     * InstantTaskExecutorRule swaps the background executor used by the Architecture Components
-     * with a different one which executes each task synchronously.
-     */
-    @get:Rule
-    val instantExecutorRule = InstantTaskExecutorRule()
+  /**
+   * InstantTaskExecutorRule swaps the background executor used by the Architecture Components
+   * with a different one which executes each task synchronously.
+   */
+  @get:Rule
+  val instantExecutorRule = InstantTaskExecutorRule()
 
-    @get:Rule
-    val testCoroutineRule = TestCoroutineRule()
+  @get:Rule
+  val testCoroutineRule = TestCoroutineRule()
 
-    private val toggleProgressUseCase = mock<ToggleProgressUseCase>()
-    private val getHabitsForTodayUseCase = mock<GetHabitsForTodayUseCase>()
+  private val toggleProgressUseCase = mock<ToggleProgressUseCase>()
+  private val getHabitsForTodayUseCase = mock<GetHabitsForTodayUseCase>()
 
-    private val viewModel =
-        HabitListViewModel(
-            toggleProgressUseCase = toggleProgressUseCase,
-            getHabitsForTodayUseCase = getHabitsForTodayUseCase
+  private val viewModel =
+    HabitListViewModel(
+      toggleProgressUseCase = toggleProgressUseCase,
+      getHabitsForTodayUseCase = getHabitsForTodayUseCase
+    )
+
+  @Test
+  fun `Verify uiState is initialized with Habits`() {
+    testCoroutineRule.runBlockingTest {
+      // Prepare
+      whenever(getHabitsForTodayUseCase.invoke()).thenReturn(
+        listOf(
+          com.lucasmontano.carreiranomundomobile.features.collection.model.HabitItem(
+            id = "ID",
+            title = "title",
+            isCompleted = false
+          )
         )
+      )
+      viewModel.onResume()
 
-    @Test
-    fun `Verify uiState is initialized with Habits`() {
-        testCoroutineRule.runBlockingTest {
-            // Prepare
-            whenever(getHabitsForTodayUseCase.invoke()).thenReturn(
-                listOf(
-                    com.lucasmontano.carreiranomundomobile.features.collection.model.HabitItem(
-                        id = "ID",
-                        title = "title",
-                        isCompleted = false
-                    )
-                )
-            )
-            viewModel.onResume()
+      // Execute
+      val uiState = viewModel.stateOnceAndStream().getOrAwaitValue()
 
-            // Execute
-            val uiState = viewModel.stateOnceAndStream().getOrAwaitValue()
-
-            // Verify
-            assert(uiState.habitItemList.isNotEmpty()) // verify uiState has items when initialized
-        }
+      // Verify
+      assert(uiState.habitItemList.isNotEmpty()) // verify uiState has items when initialized
     }
+  }
 
-    @Test
-    fun `Verify toggleProgressUseCase is invoked when toggleHabitCompleted is called`() {
-        testCoroutineRule.runBlockingTest {
-            // Prepare
-            whenever(toggleProgressUseCase.invoke("ID")).thenReturn(Unit)
-            viewModel.onResume()
+  @Test
+  fun `Verify toggleProgressUseCase is invoked when toggleHabitCompleted is called`() {
+    testCoroutineRule.runBlockingTest {
+      // Prepare
+      whenever(toggleProgressUseCase.invoke("ID")).thenReturn(Unit)
+      viewModel.onResume()
 
-            // Execute
-            viewModel.toggleHabitCompleted("ID")
+      // Execute
+      viewModel.toggleHabitCompleted("ID")
 
-            // Verify
-            verify(toggleProgressUseCase).invoke("ID")
-        }
+      // Verify
+      verify(toggleProgressUseCase).invoke("ID")
     }
+  }
 }

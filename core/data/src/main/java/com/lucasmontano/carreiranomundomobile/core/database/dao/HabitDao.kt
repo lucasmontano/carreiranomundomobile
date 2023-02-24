@@ -14,10 +14,12 @@ internal interface HabitDao {
   @Query("SELECT * FROM habit")
   suspend fun fetchAll(): List<Habit>
 
-  @Query("""
+  @Query(
+    """
     SELECT * FROM habit
     WHERE uuid LIKE :habitId
-  """)
+  """
+  )
   suspend fun fetchHabitById(habitId: String): Habit
 
   @Insert

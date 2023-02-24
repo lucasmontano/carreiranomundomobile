@@ -16,21 +16,21 @@ import javax.inject.Singleton
 @Module
 internal abstract class CollectionsModule {
 
-    @Singleton
-    @Binds
-    abstract fun providesGetHabitsForTodayUseCase(
-        impl: GetHabitsForTodayUseCaseImpl
-    ): GetHabitsForTodayUseCase
+  @Singleton
+  @Binds
+  abstract fun providesGetHabitsForTodayUseCase(
+    impl: GetHabitsForTodayUseCaseImpl
+  ): GetHabitsForTodayUseCase
 
-    @Singleton
-    @Binds
-    abstract fun providesToggleProgressUseCase(
-        impl: ToggleProgressUseCaseImpl
-    ): ToggleProgressUseCase
+  @Singleton
+  @Binds
+  abstract fun providesToggleProgressUseCase(
+    impl: ToggleProgressUseCaseImpl
+  ): ToggleProgressUseCase
 
-    @Singleton
-    @Binds
-    abstract fun providesGetHabitsBacklogUseCase(
-        impl: GetHabitsBacklogUseCaseImpl
-    ): GetHabitsBacklogUseCase
+  @Singleton
+  @Binds
+  abstract fun providesGetHabitsBacklogUseCase(
+    impl: GetHabitsBacklogUseCaseImpl
+  ): GetHabitsBacklogUseCase
 }

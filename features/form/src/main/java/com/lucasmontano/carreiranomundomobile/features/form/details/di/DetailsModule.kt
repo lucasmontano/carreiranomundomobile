@@ -12,9 +12,9 @@ import javax.inject.Singleton
 @Module
 abstract class DetailsModule {
 
-    @Singleton
-    @Binds
-    abstract fun providesGetHabitsHistoryUseCase(
-        impl: GetHabitHistoryUseCaseImpl
-    ): GetHabitHistoryUseCase
+  @Singleton
+  @Binds
+  abstract fun providesGetHabitsHistoryUseCase(
+    impl: GetHabitHistoryUseCaseImpl
+  ): GetHabitHistoryUseCase
 }

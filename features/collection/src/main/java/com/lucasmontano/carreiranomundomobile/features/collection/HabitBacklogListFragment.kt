@@ -20,77 +20,77 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HabitBacklogListFragment : Fragment() {
 
-    private var _binding: FragmentHabitBacklogListBinding? = null
+  private var _binding: FragmentHabitBacklogListBinding? = null
 
-    private val binding get() = _binding!!
+  private val binding get() = _binding!!
 
-    private lateinit var adapter: HabitBacklogListAdapter
+  private lateinit var adapter: HabitBacklogListAdapter
 
-    private lateinit var viewModel: HabitBacklogListViewModel
+  private lateinit var viewModel: HabitBacklogListViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[HabitBacklogListViewModel::class.java]
+    viewModel = ViewModelProvider(this)[HabitBacklogListViewModel::class.java]
 
-        lifecycle.addObserver(HabitBacklogListLifecycleObserver(viewModel))
-        adapter = HabitBacklogListAdapter() {
-            val uuid = viewModel.onBacklogItemClick(it)
-            val request = NavDeepLinkRequest.Builder
-                .fromUri("habit-app://com.lucasmontano.carreiranomundomobile/habit/$uuid".toUri())
-                .build()
-            findNavController().navigate(request)
-        }
+    lifecycle.addObserver(HabitBacklogListLifecycleObserver(viewModel))
+    adapter = HabitBacklogListAdapter() {
+      val uuid = viewModel.onBacklogItemClick(it)
+      val request = NavDeepLinkRequest.Builder
+        .fromUri("habit-app://com.lucasmontano.carreiranomundomobile/habit/$uuid".toUri())
+        .build()
+      findNavController().navigate(request)
     }
+  }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHabitBacklogListBinding.inflate(inflater, container, false)
-        return binding.root
+  override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+  ): View {
+    _binding = FragmentHabitBacklogListBinding.inflate(inflater, container, false)
+    return binding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    // Set the adapter
+    binding.habitBacklogRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+    binding.habitBacklogRecyclerView.adapter = adapter
+
+    // Adding decorations to our recycler view
+    addingDividerDecoration()
+
+    // Observer UI State for changes.
+    viewModel.stateOnceAndStream().observe(viewLifecycleOwner) {
+      bindUiState(it)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // Set the adapter
-        binding.habitBacklogRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.habitBacklogRecyclerView.adapter = adapter
-
-        // Adding decorations to our recycler view
-        addingDividerDecoration()
-
-        // Observer UI State for changes.
-        viewModel.stateOnceAndStream().observe(viewLifecycleOwner) {
-            bindUiState(it)
-        }
-    }
+  }
 
 
-    private fun bindUiState(uiState: HabitBacklogListViewModel.UiState) {
-        adapter.updateHabits(uiState.habitItemList)
-    }
+  private fun bindUiState(uiState: HabitBacklogListViewModel.UiState) {
+    adapter.updateHabits(uiState.habitItemList)
+  }
 
-    private fun addingDividerDecoration() {
-        // Adding Line between items with MaterialDividerItemDecoration
-        val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+  private fun addingDividerDecoration() {
+    // Adding Line between items with MaterialDividerItemDecoration
+    val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
 
-        // Adding the line at the end of the list
-        divider.isLastItemDecorated = true
+    // Adding the line at the end of the list
+    divider.isLastItemDecorated = true
 
-        val resources = requireContext().resources
+    val resources = requireContext().resources
 
-        // Adding start spacing
-        divider.dividerInsetStart = resources.getDimensionPixelSize(R.dimen.horizontal_margin)
+    // Adding start spacing
+    divider.dividerInsetStart = resources.getDimensionPixelSize(R.dimen.horizontal_margin)
 
-        // Defining size of the line
-        divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_height)
-        divider.dividerColor = ContextCompat.getColor(requireContext(), R.color.primary_200)
+    // Defining size of the line
+    divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_height)
+    divider.dividerColor = ContextCompat.getColor(requireContext(), R.color.primary_200)
 
-        binding.habitBacklogRecyclerView.addItemDecoration(divider)
-    }
+    binding.habitBacklogRecyclerView.addItemDecoration(divider)
+  }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+  }
 }
