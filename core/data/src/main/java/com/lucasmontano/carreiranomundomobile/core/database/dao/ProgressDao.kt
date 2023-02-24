@@ -17,6 +17,14 @@ internal interface ProgressDao {
   )
   suspend fun fetchProgressByHabit(habitId: String, completedAt: Long): List<Progress>
 
+  @Query(
+    """
+    SELECT * FROM progress
+    WHERE habitId LIKE :habitId
+  """
+  )
+  suspend fun fetchProgressByHabit(habitId: String): List<Progress>
+
   @Insert
   suspend fun insert(progress: Progress)
 

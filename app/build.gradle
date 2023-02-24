@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -47,6 +48,12 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.core.ktx
+
+    implementation libs.androidx.room.ktx
+    implementation libs.androidx.legacy
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    kapt libs.androidx.room.compiler
 
     implementation libs.hilt.android
     kapt libs.hilt.compiler

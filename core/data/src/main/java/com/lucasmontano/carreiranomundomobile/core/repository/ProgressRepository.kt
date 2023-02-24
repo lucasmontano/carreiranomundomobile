@@ -1,6 +1,7 @@
 package com.lucasmontano.carreiranomundomobile.core.repository
 
 import com.lucasmontano.carreiranomundomobile.core.model.ProgressDomain
+import com.lucasmontano.carreiranomundomobile.core.model.ProgressHistoryDomain
 
 interface ProgressRepository {
 
@@ -10,6 +11,12 @@ interface ProgressRepository {
    * @param completedAt time in millis when this habit was completed
    */
   suspend fun fetch(habitId: String, completedAt: Long): List<ProgressDomain>
+
+  /**
+   * Get all progress information for a habit
+   * @param habitId ID of the specific Habit
+   */
+  suspend fun fetchHabitHistory(habitId: String): List<ProgressHistoryDomain>
 
   /**
    * @param id ID of the progress

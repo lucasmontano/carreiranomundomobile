@@ -14,11 +14,34 @@
     <action
       android:id="@id/action_habitList_to_habitForm"
       app:destination="@id/habitFormFragment" />
+    <action
+      android:id="@+id/action_habitListFragment_to_habitBacklogListFragment"
+      app:destination="@id/habitBacklogListFragment" />
   </fragment>
 
   <fragment
     android:id="@+id/habitFormFragment"
     android:name="com.lucasmontano.carreiranomundomobile.features.form.HabitFormFragment"
     android:label="@string/title_habit_form" />
+  <fragment
+    android:id="@+id/habitBacklogListFragment"
+    android:name="com.lucasmontano.carreiranomundomobile.features.collection.HabitBacklogListFragment"
+    android:label="@string/title_backlog_list"
+    tools:layout="@layout/fragment_habit_backlog_list">
+    <action
+      android:id="@+id/action_habitBacklogListFragment_to_habitDetailsFragment"
+      app:destination="@id/habitDetailsFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/habitDetailsFragment"
+    android:name="com.lucasmontano.carreiranomundomobile.features.form.details.HabitDetailsFragment"
+    android:label="@string/title_habit_detail">
+    <argument
+      android:name="habitUUID"
+      app:argType="string" />
+    <deepLink
+      android:id="@+id/deepLink"
+      app:uri="habit-app://com.lucasmontano.carreiranomundomobile/habit/{habitUUID}" />
+  </fragment>
 
 </navigation>

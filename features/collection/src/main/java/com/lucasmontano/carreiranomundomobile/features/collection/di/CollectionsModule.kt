@@ -1,5 +1,7 @@
 package com.lucasmontano.carreiranomundomobile.features.collection.di
 
+import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsBacklogUseCase
+import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsBacklogUseCaseImpl
 import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsForTodayUseCase
 import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsForTodayUseCaseImpl
 import com.lucasmontano.carreiranomundomobile.features.collection.domain.ToggleProgressUseCase
@@ -25,4 +27,10 @@ internal abstract class CollectionsModule {
   abstract fun providesToggleProgressUseCase(
     impl: ToggleProgressUseCaseImpl
   ): ToggleProgressUseCase
+
+  @Singleton
+  @Binds
+  abstract fun providesGetHabitsBacklogUseCase(
+    impl: GetHabitsBacklogUseCaseImpl
+  ): GetHabitsBacklogUseCase
 }

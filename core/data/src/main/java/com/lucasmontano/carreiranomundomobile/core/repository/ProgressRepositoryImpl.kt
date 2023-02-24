@@ -4,6 +4,7 @@ import android.util.Log
 import com.lucasmontano.carreiranomundomobile.core.database.dao.ProgressDao
 import com.lucasmontano.carreiranomundomobile.core.database.entity.Progress
 import com.lucasmontano.carreiranomundomobile.core.model.ProgressDomain
+import com.lucasmontano.carreiranomundomobile.core.model.ProgressHistoryDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -21,6 +22,16 @@ internal class ProgressRepositoryImpl @Inject constructor(
         id = progress.uuid,
         habitId = habitId,
         dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK),
+      )
+    }
+  }
+
+  override suspend fun fetchHabitHistory(habitId: String): List<ProgressHistoryDomain> {
+    return dao.fetchProgressByHabit(habitId).map { progress: Progress ->
+      ProgressHistoryDomain(
+        id = progress.uuid,
+        habitId = progress.habitId,
+        completedAt = progress.completedAt
       )
     }
   }

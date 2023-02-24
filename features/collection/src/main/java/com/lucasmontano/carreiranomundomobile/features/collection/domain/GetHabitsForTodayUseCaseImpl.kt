@@ -1,9 +1,9 @@
 package com.lucasmontano.carreiranomundomobile.features.collection.domain
 
 import android.util.Log
-import com.lucasmontano.carreiranomundomobile.features.collection.model.HabitItem
 import com.lucasmontano.carreiranomundomobile.core.repository.HabitRepository
 import com.lucasmontano.carreiranomundomobile.core.repository.ProgressRepository
+import com.lucasmontano.carreiranomundomobile.features.collection.model.HabitItem
 import java.util.*
 import javax.inject.Inject
 
@@ -37,7 +37,6 @@ internal class GetHabitsForTodayUseCaseImpl @Inject constructor(
   }
 
   companion object {
-
     private const val TAG = "GetHabitsForToday"
   }
 }

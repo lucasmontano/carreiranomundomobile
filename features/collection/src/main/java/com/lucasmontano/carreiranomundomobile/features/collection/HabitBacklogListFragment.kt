@@ -1,53 +1,60 @@
 package com.lucasmontano.carreiranomundomobile.features.collection
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.view.MenuProvider
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.lucasmontano.carreiranomundomobile.features.collection.databinding.FragmentHabitListBinding
+import com.lucasmontano.carreiranomundomobile.collections.HabitBacklogListLifecycleObserver
+import com.lucasmontano.carreiranomundomobile.collections.HabitBacklogListViewModel
+import com.lucasmontano.carreiranomundomobile.features.collection.databinding.FragmentHabitBacklogListBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A [Fragment] that displays a list of habits.
- */
 @AndroidEntryPoint
-class HabitListFragment : Fragment() {
+class HabitBacklogListFragment : Fragment() {
 
-  private var _binding: FragmentHabitListBinding? = null
+  private var _binding: FragmentHabitBacklogListBinding? = null
 
   private val binding get() = _binding!!
 
-  private lateinit var adapter: HabitListAdapter
+  private lateinit var adapter: HabitBacklogListAdapter
 
-  private lateinit var viewModel: HabitListViewModel
+  private lateinit var viewModel: HabitBacklogListViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    viewModel = ViewModelProvider(this)[HabitListViewModel::class.java]
+    viewModel = ViewModelProvider(this)[HabitBacklogListViewModel::class.java]
 
-    lifecycle.addObserver(HabitListLifecycleObserver(viewModel))
-    adapter = HabitListAdapter(viewModel)
+    lifecycle.addObserver(HabitBacklogListLifecycleObserver(viewModel))
+    adapter = HabitBacklogListAdapter() {
+      val uuid = viewModel.onBacklogItemClick(it)
+      val request = NavDeepLinkRequest.Builder
+        .fromUri("habit-app://com.lucasmontano.carreiranomundomobile/habit/$uuid".toUri())
+        .build()
+      findNavController().navigate(request)
+    }
   }
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View {
-    _binding = FragmentHabitListBinding.inflate(inflater, container, false)
+    _binding = FragmentHabitBacklogListBinding.inflate(inflater, container, false)
     return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     // Set the adapter
-    binding.habitRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-    binding.habitRecyclerView.adapter = adapter
+    binding.habitBacklogRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+    binding.habitBacklogRecyclerView.adapter = adapter
 
     // Adding decorations to our recycler view
     addingDividerDecoration()
@@ -56,34 +63,10 @@ class HabitListFragment : Fragment() {
     viewModel.stateOnceAndStream().observe(viewLifecycleOwner) {
       bindUiState(it)
     }
-
-    // Set Navigation Fab
-    binding.fab.setOnClickListener {
-      findNavController().navigate(R.id.action_habitList_to_habitForm)
-    }
-
-    val menuHost = requireActivity()
-    menuHost.addMenuProvider(object : MenuProvider {
-      override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.menu_main, menu)
-      }
-
-      override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == R.id.menu_item_backlog) {
-          findNavController().navigate(R.id.action_habitListFragment_to_habitBacklogListFragment)
-          return true
-        }
-        return false
-      }
-    }, viewLifecycleOwner, Lifecycle.State.RESUMED)
   }
 
-  /**
-   * Bind UI State to View.
-   *
-   * Update list of habits according to updates.
-   */
-  private fun bindUiState(uiState: HabitListViewModel.UiState) {
+
+  private fun bindUiState(uiState: HabitBacklogListViewModel.UiState) {
     adapter.updateHabits(uiState.habitItemList)
   }
 
@@ -103,7 +86,7 @@ class HabitListFragment : Fragment() {
     divider.dividerThickness = resources.getDimensionPixelSize(R.dimen.divider_height)
     divider.dividerColor = ContextCompat.getColor(requireContext(), R.color.primary_200)
 
-    binding.habitRecyclerView.addItemDecoration(divider)
+    binding.habitBacklogRecyclerView.addItemDecoration(divider)
   }
 
   override fun onDestroyView() {
