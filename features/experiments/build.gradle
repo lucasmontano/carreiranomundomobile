@@ -5,12 +5,15 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     namespace 'com.lucasmontano.carreiranomundomobile.features.experiments'
     compileSdk rootProject.ext.sdkVersion
 
     defaultConfig {
-        buildConfigField "String", "MY_API_KEY", "\"KRFi3HLD9v8JWGU8twj7TQ==pz2ZCCwXbexzIPJS\""
+        buildConfigField "String", "API_NINJA_KEY", localProperties['apiNinjaKey']
     }
 
     buildFeatures {

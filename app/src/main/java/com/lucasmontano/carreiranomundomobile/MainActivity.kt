@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     setSupportActionBar(binding.toolbar)
     setupNavigation()
 
-    experimentRouter.runExperiment(ExperimentRouter.Experiment.CountDown())
+    experimentRouter.runExperiment(ExperimentRouter.Experiment.Quotes.WithThread)
   }
 
   private fun setupNavigation() {

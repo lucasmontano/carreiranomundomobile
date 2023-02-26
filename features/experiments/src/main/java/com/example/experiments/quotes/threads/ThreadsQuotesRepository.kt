@@ -21,7 +21,7 @@ internal class ThreadsQuotesRepository @Inject constructor() {
       val request = Request.Builder()
         .url(QUOTES_URL)
         .get()
-        .addHeader("X-Api-Key", BuildConfig.MY_API_KEY)
+        .addHeader("X-Api-Key", BuildConfig.API_NINJA_KEY)
         .build()
 
       // Dispatcher.IO: este agente é otimizado para executar E/S de disco ou rede

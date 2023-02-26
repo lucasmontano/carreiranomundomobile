@@ -30,6 +30,6 @@ internal class CountdownRenderer(
   }
 
   fun tearDown() {
-
+    scope.cancel()
   }
 }

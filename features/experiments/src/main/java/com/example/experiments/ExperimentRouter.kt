@@ -4,7 +4,6 @@ import androidx.fragment.app.FragmentActivity
 import com.example.experiments.countdown.coroutines.CountDownFragment
 import com.example.experiments.countdown.threads.ThreadsCountDownFragment
 import com.example.experiments.quotes.coroutines.QuotesFragment
-import com.example.experiments.quotes.coroutines.QuotesRenderer
 import com.example.experiments.quotes.threads.ThreadsQuotesFragment
 import com.lucasmontano.carreiranomundomobile.features.experiments.R
 import dagger.hilt.android.scopes.ActivityScoped
@@ -17,29 +16,33 @@ class ExperimentRouter @Inject constructor(
 
   fun runExperiment(experiment: Experiment) {
     val fragmentTransaction = fragmentActivity.supportFragmentManager.beginTransaction()
-    val experimentFragment = when(experiment) {
-      is Experiment.CountDown -> {
-        if (experiment.useThreads) {
-          ThreadsCountDownFragment()
-        } else {
-          CountDownFragment()
-        }
-      }
-      is Experiment.Quotes -> {
-        if (experiment.useThreads) {
-          ThreadsQuotesFragment()
-        } else {
-          QuotesFragment()
-        }
+    val experimentFragment = when (experiment) {
+      is Experiment.CountDown.WithThread -> ThreadsCountDownFragment()
+      is Experiment.CountDown.WithCoroutines -> CountDownFragment()
+      is Experiment.Quotes.WithThread -> ThreadsQuotesFragment()
+      is Experiment.Quotes.WithCoroutines -> QuotesFragment()
+      is Experiment.Quotes.WithFlow -> {
+        throw Exception()
       }
     }
     fragmentTransaction.replace(R.id.experimentsFrameLayout, experimentFragment)
     fragmentTransaction.commit()
   }
 
-  sealed class Experiment(open val useThreads: Boolean) {
+  sealed interface Experiment {
 
-    data class CountDown(override val useThreads: Boolean = false) : Experiment(useThreads)
-    data class Quotes(override val useThreads: Boolean = false) : Experiment(useThreads)
+    sealed class CountDown {
+      object WithThread : CountDown(), Experiment
+
+      object WithCoroutines : CountDown(), Experiment
+    }
+
+    sealed class Quotes {
+      object WithThread : Quotes(), Experiment
+
+      object WithCoroutines : Quotes(), Experiment
+
+      object WithFlow : Quotes(), Experiment
+    }
   }
 }
