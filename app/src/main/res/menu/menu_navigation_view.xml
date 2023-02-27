@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/habitListFragment"
+        android:icon="@drawable/ic_menu_today"
+        android:title="@string/nav_title_today"/>
+
+    <item
+        android:id="@+id/habitBacklogListFragment"
+        android:icon="@drawable/ic_habit_backlog"
+        android:title="@string/nav_title_backlog"/>
+</menu>

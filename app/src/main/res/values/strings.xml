@@ -11,4 +11,6 @@
   <string name="save">Salvar</string>
   <string name="title_backlog_list">Backlog</string>
   <string name="title_habit_detail">Detalhe</string>
+    <string name="nav_title_today">Hoje</string>
+    <string name="nav_title_backlog">Backlog</string>
 </resources>
