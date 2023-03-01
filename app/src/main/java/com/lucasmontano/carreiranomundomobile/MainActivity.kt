@@ -24,9 +24,6 @@ class MainActivity : AppCompatActivity() {
   private lateinit var navController: NavController
   private lateinit var bottomNavigation: BottomNavigationView
 
-  @Inject
-  lateinit var experimentRouter: ExperimentRouter
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,8 +32,7 @@ class MainActivity : AppCompatActivity() {
     setSupportActionBar(binding.toolbar)
     setupNavigation()
     setupBottomNavigation()
-
-    experimentRouter.runExperiment(ExperimentRouter.Experiment.Quotes.WithThread)
+    setupExperiments()
 
     // Getting app link information
     val appLinkIntent: Intent = intent
@@ -57,6 +53,13 @@ class MainActivity : AppCompatActivity() {
     navController = findNavController(R.id.nav_host_fragment_content_main)
     appBarConfiguration = AppBarConfiguration(navController.graph)
     setupActionBarWithNavController(navController, appBarConfiguration)
+  }
+
+  private fun setupExperiments() {
+    if (BuildConfig.IS_EXPERIMENTS_ENABLED) {
+      val experimentRouter = ExperimentRouter(this)
+      experimentRouter.runExperiment(ExperimentRouter.Experiment.Quotes.WithThread)
+    }
   }
 
   override fun onSupportNavigateUp(): Boolean {
