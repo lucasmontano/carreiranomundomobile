@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
+  <!--
+  TODO: Fix Navigation Destination: action_habitListFragment_to_habitBacklogListFragment
   <item
     android:id="@+id/menu_item_preferences"
     android:icon="@android:drawable/ic_menu_preferences"
     android:title="@string/menu_item_preferences" />
+    -->
 </menu>

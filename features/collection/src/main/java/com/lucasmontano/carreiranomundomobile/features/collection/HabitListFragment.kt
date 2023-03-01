@@ -69,10 +69,10 @@ class HabitListFragment : Fragment() {
       }
 
       override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == R.id.menu_item_preferences) {
+        /*if (menuItem.itemId == R.id.menu_item_preferences) {
           findNavController().navigate(R.id.action_habitListFragment_to_habitBacklogListFragment)
           return true
-        }
+        }*/
         return false
       }
     }, viewLifecycleOwner, Lifecycle.State.RESUMED)
