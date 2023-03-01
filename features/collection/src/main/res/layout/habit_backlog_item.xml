@@ -33,42 +33,49 @@
       style="@style/Widget.MaterialComponents.Chip.Filter"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:enabled="false"
       android:text="@string/sun" />
 
     <com.google.android.material.chip.Chip
       style="@style/Widget.MaterialComponents.Chip.Filter"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:enabled="false"
       android:text="@string/mon" />
 
     <com.google.android.material.chip.Chip
       style="@style/Widget.MaterialComponents.Chip.Filter"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:enabled="false"
       android:text="@string/tue" />
 
     <com.google.android.material.chip.Chip
       style="@style/Widget.MaterialComponents.Chip.Filter"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:enabled="false"
       android:text="@string/wed" />
 
     <com.google.android.material.chip.Chip
       style="@style/Widget.MaterialComponents.Chip.Filter"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:enabled="false"
       android:text="@string/thu" />
 
     <com.google.android.material.chip.Chip
       style="@style/Widget.MaterialComponents.Chip.Filter"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:enabled="false"
       android:text="@string/fri" />
 
     <com.google.android.material.chip.Chip
       style="@style/Widget.MaterialComponents.Chip.Filter"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:enabled="false"
       android:text="@string/sat" />
 
   </com.google.android.material.chip.ChipGroup>
