@@ -5,4 +5,10 @@
   <string name="title_habit_form">Configurar Hábito</string>
 
   <string name="habit_complete">Hábito foi completado?</string>
+
+  <!-- Content Descriptions and Accessibility Text -->
+  <string name="accessibility_add">Adicionar Hábito</string>
+  <string name="save">Salvar</string>
+  <string name="title_backlog_list">Backlog</string>
+  <string name="title_habit_detail">Detalhe</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.lucasmontano.carreiranomundomobile
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -16,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
   private lateinit var appBarConfiguration: AppBarConfiguration
   private lateinit var binding: ActivityMainBinding
+  private lateinit var navController: NavController
 
   @Inject
   lateinit var experimentRouter: ExperimentRouter
@@ -29,16 +33,24 @@ class MainActivity : AppCompatActivity() {
     setupNavigation()
 
     experimentRouter.runExperiment(ExperimentRouter.Experiment.Quotes.WithThread)
+
+    // Getting app link information
+    val appLinkIntent: Intent = intent
+    val appLinkData: Uri? = appLinkIntent.data
+
+    // Handling deep link to backlog screen
+    if (appLinkData?.path.equals("/backlog")) {
+      navController.navigate(R.id.action_habitListFragment_to_habitBacklogListFragment)
+    }
   }
 
   private fun setupNavigation() {
-    val navController = findNavController(R.id.nav_host_fragment_content_main)
+    navController = findNavController(R.id.nav_host_fragment_content_main)
     appBarConfiguration = AppBarConfiguration(navController.graph)
     setupActionBarWithNavController(navController, appBarConfiguration)
   }
 
   override fun onSupportNavigateUp(): Boolean {
-    val navController = findNavController(R.id.nav_host_fragment_content_main)
     return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
   }
 }

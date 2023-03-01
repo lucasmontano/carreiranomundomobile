@@ -3,7 +3,6 @@ package com.lucasmontano.carreiranomundomobile.features.collection
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.lucasmontano.carreiranomundomobile.features.collection.domain.GetHabitsForTodayUseCase
 import com.lucasmontano.carreiranomundomobile.features.collection.domain.ToggleProgressUseCase
-import com.lucasmontano.carreiranomundomobile.features.collection.model.HabitItem
 import com.lucasmontano.carreiranomundomobile.features.collection.utils.TestCoroutineRule
 import com.lucasmontano.carreiranomundomobile.features.collection.utils.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi

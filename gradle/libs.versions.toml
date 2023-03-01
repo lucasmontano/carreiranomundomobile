@@ -7,7 +7,6 @@ androidXMaterialVersion = "1.8.0"
 androidXNavigationVersion = "2.5.3"
 androidCoreTestingVersion = "1.1.1"
 androidXEspressoVersion = "3.5.1"
-androidXLifecycleVersion = "2.4.0"
 androidXRecyclerView = "1.2.1"
 androidXTestJunitVersion = "1.1.5"
 androidXTestCoreVersion = "1.5.0"
@@ -23,6 +22,8 @@ hiltVersion = "2.44"
 kotlinVersion = "1.7.21"
 okhttpVersion = "4.10.0"
 roomVersion = "2.5.0"
+legacySupportV4 = "1.0.0"
+androidXLifecycleVersion = "2.5.1"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidXAppcompatVersion" }
@@ -37,7 +38,11 @@ androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx",
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "androidXRecyclerView" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+androidx-legacy = {module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4"}
 androidx-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidXLifecycleVersion" }
+androidx-lifecycle-livedata-ktx = {module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidXLifecycleVersion"}
+androidx-lifecycle-viewmodel-ktx = {module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidXLifecycleVersion"}
+androidx-lifecycle-navigation-navigationSafeArgs = {module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "androidXNavigationVersion"}
 
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxVersion" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gsonVersion" }

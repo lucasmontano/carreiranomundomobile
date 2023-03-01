@@ -7,7 +7,9 @@ import com.lucasmontano.carreiranomundomobile.core.model.HabitDomain
 import java.util.*
 import javax.inject.Inject
 
-internal class HabitRepositoryImpl @Inject constructor(private val dao: HabitDao) : HabitRepository {
+internal class HabitRepositoryImpl @Inject constructor(
+  private val dao: HabitDao
+) : HabitRepository {
 
   override suspend fun fetch(dayOfWeek: Int): List<HabitDomain> {
     Log.d(TAG, "Fetching habits for day of week $dayOfWeek")
@@ -18,6 +20,23 @@ internal class HabitRepositoryImpl @Inject constructor(private val dao: HabitDao
         daysOfWeek = it.daysOfWeek
       )
     }
+  }
+
+  override suspend fun fetchAll(): List<HabitDomain> {
+    Log.d(TAG, "Fetching all habits")
+    return dao.fetchAll().map {
+      HabitDomain(
+        id = it.uuid,
+        title = it.title,
+        daysOfWeek = it.daysOfWeek
+      )
+    }
+  }
+
+  override suspend fun fetchHabitById(habitId: String): HabitDomain {
+    Log.d(TAG, "Fetching habit by id ${habitId}")
+    val habit = dao.fetchHabitById(habitId)
+    return HabitDomain(id = habit.uuid, title = habit.title, daysOfWeek = habit.daysOfWeek)
   }
 
   override suspend fun add(title: String, daysOfWeek: List<Int>) {
