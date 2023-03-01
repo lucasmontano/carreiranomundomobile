@@ -21,7 +21,7 @@
 
   <CheckBox
     android:id="@+id/completeCheckBox"
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/touch_target"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/simple_margin"
     app:layout_constraintBottom_toBottomOf="parent"

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="menu_item_backlog">Backlog</string>
+    <string name="menu_item_preferences">Preferências</string>
 </resources>

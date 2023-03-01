@@ -14,9 +14,6 @@
     <action
       android:id="@id/action_habitList_to_habitForm"
       app:destination="@id/habitFormFragment" />
-    <action
-      android:id="@+id/action_habitListFragment_to_habitBacklogListFragment"
-      app:destination="@id/habitBacklogListFragment" />
   </fragment>
 
   <fragment
