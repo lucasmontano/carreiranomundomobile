@@ -20,6 +20,7 @@
     android:id="@+id/habitFormFragment"
     android:name="com.lucasmontano.carreiranomundomobile.features.form.HabitFormFragment"
     android:label="@string/title_habit_form" />
+
   <fragment
     android:id="@+id/habitBacklogListFragment"
     android:name="com.lucasmontano.carreiranomundomobile.features.collection.HabitBacklogListFragment"
@@ -29,6 +30,7 @@
       android:id="@+id/action_habitBacklogListFragment_to_habitDetailsFragment"
       app:destination="@id/habitDetailsFragment" />
   </fragment>
+
   <fragment
     android:id="@+id/habitDetailsFragment"
     android:name="com.lucasmontano.carreiranomundomobile.features.form.details.HabitDetailsFragment"
