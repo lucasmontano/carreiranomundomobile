@@ -35,7 +35,6 @@ internal class CountDownFragment : Fragment() {
 
   override fun onDestroyView() {
     super.onDestroyView()
-    renderer.tearDown()
     _binding = null
   }
 }
