@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
   private fun setupExperiments() {
     if (BuildConfig.IS_EXPERIMENTS_ENABLED) {
       val experimentRouter = ExperimentRouter(this)
-      experimentRouter.runExperiment(ExperimentRouter.Experiment.Quotes.WithThread)
+      experimentRouter.runExperiment(ExperimentRouter.Experiment.Quotes.WithRxJava)
     }
   }
 
