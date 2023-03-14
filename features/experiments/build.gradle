@@ -32,6 +32,7 @@ dependencies {
     implementation libs.gson
     implementation libs.okhttp3
     implementation libs.kotlinx.coroutines.android
+    implementation libs.bundles.rxjava
 
     implementation libs.hilt.android
     kapt libs.hilt.compiler
