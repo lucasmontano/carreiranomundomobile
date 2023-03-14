@@ -10,9 +10,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.experiments.ExperimentRouter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lucasmontano.carreiranomundomobile.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     setSupportActionBar(binding.toolbar)
     setupNavigation()
     setupBottomNavigation()
+    setupExperiments()
 
     // Getting app link information
     val appLinkIntent: Intent = intent
@@ -50,6 +53,13 @@ class MainActivity : AppCompatActivity() {
     navController = findNavController(R.id.nav_host_fragment_content_main)
     appBarConfiguration = AppBarConfiguration(navController.graph)
     setupActionBarWithNavController(navController, appBarConfiguration)
+  }
+
+  private fun setupExperiments() {
+    if (BuildConfig.IS_EXPERIMENTS_ENABLED) {
+      val experimentRouter = ExperimentRouter(this)
+      experimentRouter.runExperiment(ExperimentRouter.Experiment.Quotes.WithThread)
+    }
   }
 
   override fun onSupportNavigateUp(): Boolean {

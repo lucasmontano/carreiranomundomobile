@@ -16,6 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "Boolean", "IS_EXPERIMENTS_ENABLED", "false"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation project(':features:experiments')
     implementation project(':features:form')
     implementation project(':features:collection')
 

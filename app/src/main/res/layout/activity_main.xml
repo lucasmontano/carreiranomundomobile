@@ -18,6 +18,11 @@
       android:background="?attr/colorPrimary"
       app:popupTheme="@style/Theme.App.PopupOverlay" />
 
+    <FrameLayout
+      android:id="@+id/experimentsFrameLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
   </com.google.android.material.appbar.AppBarLayout>
 
   <include layout="@layout/content_main" />

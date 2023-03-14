@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
+android {
+    namespace 'com.lucasmontano.carreiranomundomobile.features.experiments'
+    compileSdk rootProject.ext.sdkVersion
+
+    defaultConfig {
+        buildConfigField "String", "API_NINJA_KEY", localProperties['apiNinjaKey']
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation project(':core:data')
+    implementation project(':core:ui')
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.cardview
+    implementation libs.androidx.lifecycle
+
+    implementation libs.gson
+    implementation libs.okhttp3
+    implementation libs.kotlinx.coroutines.android
+
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+
+    implementation libs.material
+}

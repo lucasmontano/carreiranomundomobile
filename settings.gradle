@@ -34,5 +34,6 @@ enableFeaturePreview("VERSION_CATALOGS")
 include ':app'
 include ':core:data'
 include ':core:ui'
+include ':features:experiments'
 include ':features:form'
 include ':features:collection'

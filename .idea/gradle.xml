@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/collection" />
+            <option value="$PROJECT_DIR$/features/experiments" />
             <option value="$PROJECT_DIR$/features/form" />
           </set>
         </option>
