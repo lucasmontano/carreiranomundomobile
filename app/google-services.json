@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "972964877892",
+    "project_id": "habitos-cursoandroid",
+    "storage_bucket": "habitos-cursoandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972964877892:android:9fbeb4979829d334f34e11",
+        "android_client_info": {
+          "package_name": "com.lucasmontano.carreiranomundomobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972964877892-tl1q98nl6jn6s9gt469lajs9bpr9tbe6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lucasmontano.carreiranomundomobile",
+            "certificate_hash": "84dff876468b76eb9a6bf13fbc6658bb71062679"
+          }
+        },
+        {
+          "client_id": "972964877892-hr8stjl0soj5lujil5qprofq8673h2k5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCorTBW1829uyzJe_uG3_OkTnKXSxOZM3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972964877892-f4ip7q9umlkqitp11vvjklmpl69qu2tt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
