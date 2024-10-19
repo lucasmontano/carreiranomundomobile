@@ -3,6 +3,7 @@ package com.example.experiments
 import androidx.fragment.app.FragmentActivity
 import com.example.experiments.countdown.coroutines.CountDownFragment
 import com.example.experiments.countdown.threads.ThreadsCountDownFragment
+import com.example.experiments.gpt.GPTFragment
 import com.example.experiments.quotes.coroutines.QuotesFragment
 import com.example.experiments.quotes.threads.ThreadsQuotesFragment
 import com.lucasmontano.carreiranomundomobile.features.experiments.R
@@ -21,6 +22,7 @@ class ExperimentRouter @Inject constructor(
       is Experiment.CountDown.WithCoroutines -> CountDownFragment()
       is Experiment.Quotes.WithThread -> ThreadsQuotesFragment()
       is Experiment.Quotes.WithCoroutines -> QuotesFragment()
+      is Experiment.GPT.WithCoroutines -> GPTFragment()
       is Experiment.Quotes.WithFlow -> {
         throw Exception()
       }
@@ -43,6 +45,11 @@ class ExperimentRouter @Inject constructor(
       object WithCoroutines : Quotes(), Experiment
 
       object WithFlow : Quotes(), Experiment
+    }
+
+    sealed class GPT {
+
+      object WithCoroutines : Quotes(), Experiment
     }
   }
 }

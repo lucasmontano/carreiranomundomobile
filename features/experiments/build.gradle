@@ -14,6 +14,7 @@ android {
 
     defaultConfig {
         buildConfigField "String", "API_NINJA_KEY", localProperties['apiNinjaKey']
+        buildConfigField "String", "OPEN_AI_API_KEY", localProperties['openAiKey']
     }
 
     buildFeatures {
@@ -28,9 +29,11 @@ dependencies {
     implementation libs.androidx.core.ktx
     implementation libs.androidx.cardview
     implementation libs.androidx.lifecycle
+    implementation libs.bundles.navigation
 
     implementation libs.gson
     implementation libs.okhttp3
+    implementation libs.bundles.retrofit
     implementation libs.kotlinx.coroutines.android
 
     implementation libs.hilt.android
