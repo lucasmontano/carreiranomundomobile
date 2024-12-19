@@ -16,6 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        android.buildFeatures.buildConfig = true
         buildConfigField "Boolean", "IS_EXPERIMENTS_ENABLED", "false"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -28,13 +29,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
-        freeCompilerArgs = ['-Xjvm-default=enable']
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
     }
+
     buildFeatures {
         viewBinding true
     }

@@ -8,6 +8,16 @@ plugins {
 android {
     namespace 'com.lucasmontano.carreiranomundomobile.core.data'
     compileSdk rootProject.ext.sdkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
 }
 
 dependencies {
@@ -19,4 +29,5 @@ dependencies {
     kapt libs.androidx.room.compiler
 
     testImplementation libs.androidx.junit.ktx
+    runtimeOnly libs.kotlinx.metadata.jvm
 }

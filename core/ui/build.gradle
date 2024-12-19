@@ -7,3 +7,9 @@ android {
     namespace 'com.lucasmontano.carreiranomundomobile.core.ui'
     compileSdk rootProject.ext.sdkVersion
 }
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
