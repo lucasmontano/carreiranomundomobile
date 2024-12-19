@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="17">
+      <module name="carreiranomundomobile.app" target="21" />
+      <module name="carreiranomundomobile.core.data" target="21" />
+      <module name="carreiranomundomobile.features.collection" target="21" />
+      <module name="carreiranomundomobile.features.experiments" target="21" />
+      <module name="carreiranomundomobile.features.form" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>

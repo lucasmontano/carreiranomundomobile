@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         google()
+        mavenCentral()
     }
     dependencies {
         classpath libs.androidx.lifecycle.navigation.navigationSafeArgs
@@ -13,11 +14,11 @@ plugins {
     alias(libs.plugins.kotlin.kapt) apply false
 
     // TODO: Fix Dagger Hilt Plugin definition (Tricky)
-    id 'com.google.dagger.hilt.android' version '2.44' apply false
+    id 'com.google.dagger.hilt.android' version '2.53.1' apply false
 }
 
 ext {
-    sdkVersion = 33
+    sdkVersion = 35
     minVersion = 26
-    targetVersion = 31
+    targetVersion = 35
 }

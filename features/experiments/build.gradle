@@ -16,6 +16,16 @@ android {
         buildConfigField "String", "API_NINJA_KEY", localProperties['apiNinjaKey']
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
+
     buildFeatures {
         viewBinding true
     }
